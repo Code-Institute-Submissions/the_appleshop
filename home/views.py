@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def index(request):
     """
     A view that displays an index page
     """
-    return render(request, 'index.html')
+    return redirect('products')

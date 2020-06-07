@@ -45,11 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'accounts',
-    'cart',
-    'checkout',
-    'home',
     'products',
+    'cart',
     'search',
+    'checkout',
+    'storages',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'appleshop.urls'
-#'django.template.context_processors.media',
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,6 +78,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'cart.contexts.cart_contents',
+                'sitestates.get_active_app'
             ],
         },
     },
@@ -157,12 +159,15 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 STATICFILES_LOCATION = 'static'
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+#Removed to use local staticfiles
+#STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+#Added to use local staticfiles
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
