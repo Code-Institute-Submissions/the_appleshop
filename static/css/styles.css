@@ -77,7 +77,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-size: 6vw;
+    font-size: 5vw;
   }
   .active-app {
     color: rgba(255, 0, 0, 0.5);
@@ -149,22 +149,6 @@
   }
   #bottombar {
     display: none;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin: 7.5px 0;
-  }
-  #bottombar .quicklinks {
-    width: 20vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    font-size: 6vw;
   }
   .active-app {
     color: rgba(255, 0, 0, 0.5);

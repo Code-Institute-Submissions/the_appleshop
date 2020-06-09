@@ -81,8 +81,6 @@
         <div class="container">
             <div class="navbar-header">
                 <ul class="nav navbar-nav navbar-right" id="bottombar">
-
-
                     <li class="quicklinks">
                         {% if "products" in app_path %}
                         <a href="{% url 'products' %}"><i class="fa fa-home active-app"></i></a>
@@ -114,9 +112,9 @@
 
                     <li class="quicklinks">
                         {% if "accounts" in app_path %}
-                        <a href="{% url 'login' %}"><i class="fa fa-user active-app"></i></a>
+                        <a href="{% url 'profile' %}"><i class="fa fa-user active-app"></i></a>
                         {% else %}
-                        <a href="{% url 'login' %}"><i class="fa fa-user"></i></a>
+                        <a href="{% url 'profile' %}"><i class="fa fa-user"></i></a>
                         {% endif %}
                     </li>
 
