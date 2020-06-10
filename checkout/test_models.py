@@ -16,13 +16,9 @@ class TestCheckoutModels(TestCase):
                                      county='North',
                                      date='2020-06-09')
         
-        order.save()
-        #self.assertEqual(order, '1-2020-06-09-John Doe')
-        self.assertEqual(order.id, 1)
-        self.assertEqual(order.date, '2020-06-09')
-        self.assertEqual(order.full_name, 'John Doe')
+        self.assertIn('1-2020-06-09-John Doe', str(order))
+        
 
-"""
     def test_order_line_item_Model(self):
         order = Order.objects.create(full_name='John Doe',
                                      phone_number='123456789',
@@ -33,13 +29,10 @@ class TestCheckoutModels(TestCase):
                                      street_address2='22',
                                      county='North',
                                      date='2020-06-09')
-        #order.save()
         product = Product.objects.create(name='testproduct', description='description testproduct', price=2)
-        product.save()
         order_line_item= OrderLineItem(order=order,
                                        product=product,
                                        quantity=2)
-        self.assertEqual(order_line_item.quantity, 2)
-        self.assertEqual(order_line_item.product.name, 'testproduct')
-        self.assertEqual(order_line_item.product.price, 2)
-"""
+
+        self.assertEqual('2 testproduct @ 2', str(order_line_item))
+        
