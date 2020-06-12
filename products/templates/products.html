@@ -12,8 +12,9 @@
             <!--
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
             <h3>{{product.name}}</h3>
-            {{product.id}}
+            
             {% if product.id in wishlist %}
+
             <form method="POST" action="{% url 'remove_from_wishlist' product.id %}">
                 {% csrf_token %}
                 <span class="input-group-btn">

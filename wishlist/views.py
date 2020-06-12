@@ -9,10 +9,9 @@ def view_wishlist(request):
 def add_to_wishlist(request, id):
     """Add a product to the wishlist"""
     wishlist = request.session.get('wishlist', [])
-    if id not in wishlist:
+    if int(id) not in wishlist:
         wishlist.append(int(id)) 
     request.session['wishlist'] = wishlist
-    print('add wishlist', wishlist)
     return redirect(reverse('index'))
 
 
