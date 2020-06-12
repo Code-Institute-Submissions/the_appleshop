@@ -18,6 +18,8 @@ from django.contrib import admin
 from accounts import urls as urls_accounts
 from products import urls as urls_products
 from search import urls as urls_search
+from wishlist import urls as urls_wishlist
+
 from cart import urls as urls_cart
 from checkout import urls as urls_checkout
 from products.views import all_products
@@ -35,4 +37,6 @@ urlpatterns = [
     url(r'^checkout/', include(urls_checkout)),
     url(r'^search/', include(urls_search)),
     url(r'^media/(?P<path>.*)$', static.serve,{"document_root": MEDIA_ROOT}),
+    url(r'^wishlist/', include(urls_wishlist)),
+
 ]

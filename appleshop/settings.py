@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'checkout',
     'storages',
     'home',
+    'wishlist',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'cart.contexts.cart_contents',
-                'sitestates.get_active_app'
+                'sitestates.get_active_app',
+                'wishlist.contexts.wishlist_contents',
             ],
         },
     },
