@@ -13,7 +13,13 @@ def wishlist_contents(request):
     every page
     """
     wishlist = request.session.get('wishlist', [])
+
+    if request.user.is_authenticated:
+        get_and_update_wishlist(request, wishlist)
+    #wishlist = request.session.get('wishlist', [])
     wishlist_items = []
+    #request.session['wishlist']=[]
+    #wishlist=[]
     for id in wishlist:
         product = get_object_or_404(Product, pk=id)
         wishlist_items.append({'product': product})
@@ -27,45 +33,52 @@ def make_wishlist_string(request, wishlist):
 def make_wishlist_list(request, productlist):
     if productlist !="":
         tmplist= productlist.split(',')
-        tmpwishlist = [int(product) for product in tmplist]
-        return tmpwishlist
+        tmp_wishlist = [int(product) for product in tmplist]
+        return tmp_wishlist
     else:
         return []
 
 
 def merge_wishlists(request, tmp_wishlist_from_db, wishlist):
+    merged_wishlist = wishlist
     for product in tmp_wishlist_from_db:
-        if product not in wishlist:
-            wishlist.append(product)
-    return wishlist
+        if product not in merged_wishlist:
+            merged_wishlist.append(product)
+    return merged_wishlist
 
 
-@login_required
-def get_and_update_wishlist(request):
-    wishlist = request.session.get('wishlist', [])
+#@login_required
+def get_and_update_wishlist(request, wishlist):
     user_wishlist = None
     try:
         user_wishlist = Wishlist.objects.get(user=request.user.id)
 
     except:
-        messages.success(request, "Creating wishlist in database")
- 
+        messages.success(request, "Saving wishlist to database")
+    
     if user_wishlist == None:
         name = str(request.user)+"'s wishlist"
-        if wishlist !=[]:
-            product_list = make_wishlist_string(request, wishlist)
-        else:
-            product_list = ""
+        product_list = make_wishlist_string(request, wishlist)
         user_wishlist = Wishlist(user=request.user, name=name, product_list=product_list)
+        user_wishlist.save()
     
     elif user_wishlist != None:
         if wishlist == []:
             request.session['wishlist'] = make_wishlist_list(request, user_wishlist.product_list)
+        
         elif wishlist != [] and user_wishlist.product_list != "":
-            tmp_wishlist_from_db=make_wishlist_list(request, user_wishlist.product_list)
-            merged_wishlist = merge_wishlists(request, tmp_wishlist_from_db, wishlist)
+            print('wishlist before merge', wishlist)            
+            tmp_wishlist_db=make_wishlist_list(request, user_wishlist.product_list)
+            print('tmp_wishlist_db', tmp_wishlist_db)            
+
+            merged_wishlist = merge_wishlists(request, tmp_wishlist_db, wishlist)
+            print('merged_wishlist', merged_wishlist)            
+
             user_wishlist.product_list = make_wishlist_string(request, merged_wishlist)
             user_wishlist.save()
-            request.session['wishlist'] = merged_wishlist   
-    return {'wishlist': wishlist}
+            request.session['wishlist'] = merged_wishlist
+        elif wishlist != [] and user_wishlist.product_list == "":
+            user_wishlist.product_list = make_wishlist_string(request, wishlist)
+            user_wishlist.save()
+        return
 

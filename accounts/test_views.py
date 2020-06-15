@@ -36,7 +36,7 @@ class TestAccountsLoginView(TestCase):
     def test_login_with_correct_password(self):
         new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')
         response=self.client.post('/accounts/login/', data={'username': 'testuser', 'password': 'password'}, follow=True)
-        self.assertTemplateUsed(response, "products.html")
+        self.assertTemplateUsed(response, "profile.html")
         self.assertIn(b'You have successfully logged in!', response.content)
 
     def test_login_with_incorrect_password(self):

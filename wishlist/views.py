@@ -15,20 +15,18 @@ def add_to_wishlist(request, id):
     if int(id) not in wishlist:
         wishlist.append(int(id)) 
         request.session['wishlist'] = wishlist
-        response=messages.success(request, "Product {0} has been added to wishlist".format(product))
+        messages.success(request, "Product {0} has been added to wishlist".format(product))
     return redirect(reverse('index'))
 
 
 def remove_from_wishlist(request, id):
-    """
-    Remove a product from wishlist
-    """
+    """Remove a product from wishlist"""
     wishlist = request.session.get('wishlist', [])
     product = get_object_or_404(Product, pk=int(id))
     if int(id) in wishlist:
         wishlist.remove(int(id))    
         request.session['wishlist'] = wishlist
-        response=messages.success(request, "Product {0} has been removed from wishlist".format(product))
+        messages.success(request, "Product {0} has been removed from wishlist".format(product))
     if request.method=='GET':
         return redirect(reverse('view_wishlist'))
     elif request.method=='POST':
