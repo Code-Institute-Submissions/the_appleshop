@@ -13,12 +13,7 @@
             <!--
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
             <h3>{{item.product.name}}</h3>
-            <form method="POST" action="{% url 'delete_from_wishlist' item.product.id %}">
-                {% csrf_token %}
-                <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit">Remove</button>
-                </span>
-            </form>
+            <a href="{% url 'remove_from_wishlist' item.product.id %}"><i class="fa fa-sign-in"></i></a>
             <p class="product-description">{{ product.description }}</p>
             <p>{{ product.price }}</p>
             <form method="POST" action="{% url 'add_to_cart' item.product.id %}">
@@ -35,7 +30,7 @@
     </div>    
     {% endfor %}
     {% else %}
-    <p>No items in your wishlist</p>
+    <p>There are no products in your wishlist</p>
     {% endif %}
 
 </div>

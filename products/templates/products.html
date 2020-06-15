@@ -14,7 +14,6 @@
             <h3>{{product.name}}</h3>
             
             {% if product.id in wishlist %}
-
             <form method="POST" action="{% url 'remove_from_wishlist' product.id %}">
                 {% csrf_token %}
                 <span class="input-group-btn">

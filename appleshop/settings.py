@@ -81,7 +81,7 @@ TEMPLATES = [
                 'cart.contexts.cart_contents',
                 'sitestates.get_active_app',
                 'wishlist.contexts.wishlist_contents',
-                #'wishlist.contexts.save_wishlist_to_db',
+                'wishlist.contexts.get_and_update_wishlist',
             ],
         },
     },
