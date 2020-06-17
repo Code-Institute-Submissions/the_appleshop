@@ -19,8 +19,6 @@ class TestWishlistContext(TestCase):
     def test_wishlist_contents_return_values(self):
         product1 = Product.objects.create(name='Boskop', description='description testproduct', price=2)
         product2 = Product.objects.create(name='Golden delicious', description='description', price=1)      
-        product1.save()
-        product2.save()
         self.client.post('/wishlist/add/1')
         self.client.post('/wishlist/add/2')
         wishlist = self.client.session.get('wishlist', [])
