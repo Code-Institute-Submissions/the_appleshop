@@ -21,7 +21,7 @@ def add_to_wishlist(request, id):
         messages.success(request, "Product {0} has been added to wishlist".format(product))
     if request.user.is_authenticated:
         user_wishlist = Wishlist.objects.get(user=request.user.id)
-        user_wishlist.product_list = make_wishlist_string(request, wishlist)
+        user_wishlist.product_list = make_wishlist_string(wishlist)
         user_wishlist.save()
     return redirect(reverse('index'))
 
@@ -36,7 +36,7 @@ def remove_from_wishlist(request, id):
         messages.success(request, "Product {0} has been removed from wishlist".format(product))
     if request.user.is_authenticated:
         user_wishlist = Wishlist.objects.get(user=request.user.id)
-        user_wishlist.product_list = make_wishlist_string(request, wishlist)
+        user_wishlist.product_list = make_wishlist_string(wishlist)
         user_wishlist.save()
     if request.method=='GET':
         return redirect(reverse('view_wishlist'))

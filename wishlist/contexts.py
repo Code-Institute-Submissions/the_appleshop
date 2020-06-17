@@ -22,11 +22,11 @@ def wishlist_contents(request):
     return {'wishlist': wishlist, 'wishlist_items': wishlist_items}
 
 
-def make_wishlist_string(request, wishlist):
+def make_wishlist_string(wishlist):
         return ','.join(str(product_id) for product_id in wishlist) 
 
 
-def make_wishlist_list(request, productlist):
+def make_wishlist_list(productlist):
     if productlist !="":
         tmplist= productlist.split(',')
         tmp_wishlist = [int(product) for product in tmplist]
@@ -35,7 +35,7 @@ def make_wishlist_list(request, productlist):
         return []
 
 
-def merge_wishlists(request, tmp_wishlist_from_db, wishlist):
+def merge_wishlists(tmp_wishlist_from_db, wishlist):
     merged_wishlist = wishlist
     for product in tmp_wishlist_from_db:
         if product not in merged_wishlist:
@@ -53,22 +53,22 @@ def get_and_update_wishlist(request):
     except:
         messages.success(request, "Saving wishlist to database")
         name = str(request.user)+"'s wishlist"
-        product_list = make_wishlist_string(request, wishlist)
+        product_list = make_wishlist_string(wishlist)
         user_wishlist = Wishlist(user=request.user, name=name, product_list=product_list)
         user_wishlist.save()
     
     if user_wishlist.product_list!="":
         if wishlist == []:
-            request.session['wishlist'] = make_wishlist_list(request, user_wishlist.product_list)      
+            request.session['wishlist'] = make_wishlist_list(user_wishlist.product_list)      
         else:
-            tmp_wishlist_db=make_wishlist_list(request, user_wishlist.product_list)
-            merged_wishlist = merge_wishlists(request, tmp_wishlist_db, wishlist)
-            user_wishlist.product_list = make_wishlist_string(request, merged_wishlist)
+            tmp_wishlist_db=make_wishlist_list(user_wishlist.product_list)
+            merged_wishlist = merge_wishlists(tmp_wishlist_db, wishlist)
+            user_wishlist.product_list = make_wishlist_string(merged_wishlist)
             user_wishlist.save()
             request.session['wishlist'] = merged_wishlist
     elif user_wishlist.product_list=="": 
         if wishlist != []:
-            user_wishlist.product_list = make_wishlist_string(request, wishlist) 
+            user_wishlist.product_list = make_wishlist_string(wishlist) 
             user_wishlist.save()
     return
 
