@@ -43,7 +43,7 @@ def merge_wishlists(tmp_wishlist_from_db, wishlist):
     return merged_wishlist
 
 
-#@login_required
+@login_required
 def get_and_update_wishlist(request):
     wishlist = request.session.get('wishlist', [])
     user_wishlist = None
