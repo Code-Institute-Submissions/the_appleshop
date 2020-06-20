@@ -70,6 +70,7 @@ def user_profile(request):
             address='yes'
 
         except:
+            user_address_current = UserAddress.objects.create(user=request.user)
             user_addressform=UserAddressForm()
             address='no'
             messages.success(request, "Shipping Address not found.")
