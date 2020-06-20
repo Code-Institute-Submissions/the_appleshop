@@ -126,7 +126,7 @@
     <p id="t73" class="run"><span class="n"><a href="#t73">73</a></span><span class="t">        <span class="nam">page</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">client</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/accounts/login/"</span><span class="op">,</span> <span class="nam">content_type</span><span class="op">=</span><span class="str">"html/text"</span><span class="op">,</span> <span class="nam">follow</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t74" class="run"><span class="n"><a href="#t74">74</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">page</span><span class="op">.</span><span class="nam">status_code</span><span class="op">,</span> <span class="num">200</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t75" class="run"><span class="n"><a href="#t75">75</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertTemplateUsed</span><span class="op">(</span><span class="nam">page</span><span class="op">,</span> <span class="str">"profile.html"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t76" class="run"><span class="n"><a href="#t76">76</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertIn</span><span class="op">(</span><span class="str">b"testuser@domain.com"</span><span class="op">,</span> <span class="nam">page</span><span class="op">.</span><span class="nam">content</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t76" class="run"><span class="n"><a href="#t76">76</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertIn</span><span class="op">(</span><span class="str">b"Update Address!"</span><span class="op">,</span> <span class="nam">page</span><span class="op">.</span><span class="nam">content</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t77" class="pln"><span class="n"><a href="#t77">77</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t78" class="pln"><span class="n"><a href="#t78">78</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t79" class="pln"><span class="n"><a href="#t79">79</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -135,7 +135,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-15 19:08
+            created at 2020-06-20 04:32
         </p>
     </div>
 </div>

@@ -73,7 +73,7 @@ class TestAccountsProfileView(TestCase):
         page = self.client.get("/accounts/login/", content_type="html/text", follow=True)
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "profile.html")
-        self.assertIn(b"testuser@domain.com", page.content)
+        self.assertIn(b"Update Address!", page.content)
 
 
 
