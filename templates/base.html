@@ -98,24 +98,26 @@
 
                     <li class="quicklinks">
                         {% if "wishlist" in app_path %}
-                        <a href="{% url 'view_wishlist' %}"><i class="fa fa-star active-app"></i></a>
-                        {% else %}
-                        <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i></a>
-                        {% endif %}
-
+                        <a href="{% url 'view_wishlist' %}"><i class="fa fa-star active-app"></i>
+                            {% else %}
+                            <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i>
+                                {% endif %}
+                                {%if wishlist_count > 0 %}
+                                <label class="badge badge-warning">{{ wishlist_count }}</label>
+                                {% endif %}
+                            </a>
 
                     </li>
                     <li class="quicklinks">
                         {% if "cart" in app_path %}
                         <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart active-app"></i>
-                        {% else %}
-                        <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i>
-                        {% endif %}
-                            {%if product_count > 0 %}
-                            <label class="badge badge-warning">{{ product_count }}</label>
-                            {% endif %}
-                        </a>
-                        
+                            {% else %}
+                            <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i>
+                                {% endif %}
+                                {%if product_count > 0 %}
+                                <label class="badge badge-warning">{{ product_count }}</label>
+                                {% endif %}
+                            </a>
                     </li>
 
                     <li class="quicklinks">

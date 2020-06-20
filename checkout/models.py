@@ -12,6 +12,8 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=40, blank=False) 
     county = models.CharField(max_length=40, blank=False)
     date = models.DateField()
+    order_sent = models.BooleanField(default=False)
+    order_paid = models.BooleanField(default=False)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)

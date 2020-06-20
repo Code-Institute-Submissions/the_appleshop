@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -64,10 +64,10 @@ def user_profile(request):
         return redirect(reverse('login'))
     else:
         try:
-            user_address_current = UserAddress.objects.get(user=request.user.id)
-            user_addressform=UserAddressForm(instance=user_address_current)
-            messages.success(request, "This is your current Shipping Address.")
+            user_address = UserAddress.objects.get(user=request.user.id)
             address='yes'
+            user_addressform=UserAddressForm(instance=user_address)
+            messages.success(request, "This is your current Shipping Address.")
 
         except:
             user_addressform=UserAddressForm()
@@ -77,10 +77,9 @@ def user_profile(request):
         if request.method == "POST":
             user_addressform = UserAddressForm(request.POST)
             if user_addressform.is_valid:
-                user_address_new = user_addressform.save(commit=False)
-                user_address_new.user=request.user
-                user_address_new.pk = user_address_current.pk
-                user_address_new.save()
+                user_address = user_addressform.save(commit=False)
+                user_address.user=request.user
+                user_address.save()
             messages.success(request, "Shipping Address updated.")
             address='updated'
     

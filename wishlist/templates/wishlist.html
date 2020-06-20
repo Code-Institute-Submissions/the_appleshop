@@ -3,7 +3,7 @@
 {% block head_js %}
 {% endblock head_js %}
 {% block content %}
-<div class="row row-flex">
+<div class="row row-flex">    
     {% if wishlist_items %}
     {% for item in wishlist_items %}
     
@@ -14,8 +14,8 @@
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
             <h3>{{item.product.name}}</h3>
             <a href="{% url 'remove_from_wishlist' item.product.id %}"><i class="fa fa-sign-in"></i></a>
-            <p class="product-description">{{ product.description }}</p>
-            <p>{{ product.price }}</p>
+            <p class="product-description">{{ item.product.description }}</p>
+            <p>{{ item.product.price }}</p>
             <form method="POST" action="{% url 'add_to_cart' item.product.id %}">
                 {% csrf_token %}
                 <div class="input-group">
@@ -32,6 +32,5 @@
     {% else %}
     <p>There are no products in your wishlist</p>
     {% endif %}
-
 </div>
 {% endblock %}

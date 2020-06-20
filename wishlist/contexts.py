@@ -19,7 +19,7 @@ def wishlist_contents(request):
     for id in wishlist:
         product = get_object_or_404(Product, pk=id)
         wishlist_items.append({'product': product})
-    return {'wishlist': wishlist, 'wishlist_items': wishlist_items}
+    return {'wishlist': wishlist, 'wishlist_items': wishlist_items, 'wishlist_count': len(wishlist)}
 
 
 def make_wishlist_string(wishlist):
@@ -59,16 +59,17 @@ def get_and_update_wishlist(request):
     
     if user_wishlist.product_list!="":
         if wishlist == []:
-            request.session['wishlist'] = make_wishlist_list(user_wishlist.product_list)      
+            request.session['wishlist'] = make_wishlist_list(user_wishlist.product_list)
+
         else:
             tmp_wishlist_db=make_wishlist_list(user_wishlist.product_list)
             merged_wishlist = merge_wishlists(tmp_wishlist_db, wishlist)
             user_wishlist.product_list = make_wishlist_string(merged_wishlist)
             user_wishlist.save()
             request.session['wishlist'] = merged_wishlist
+
     elif user_wishlist.product_list=="": 
         if wishlist != []:
             user_wishlist.product_list = make_wishlist_string(wishlist) 
             user_wishlist.save()
     return
-
