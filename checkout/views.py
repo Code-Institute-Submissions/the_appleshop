@@ -20,6 +20,7 @@ def update_ordered_pcs(request):
     for id, quantity in cart.items():
         product = get_object_or_404(Product, pk=id)
         product.ordered_pcs+=quantity
+        product.save()
 
 
 @login_required()
@@ -38,6 +39,7 @@ def checkout(request):
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
+            order.order_paid = True
             order.save()
             cart = request.session.get('cart', {})
             total = 0
