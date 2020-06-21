@@ -6,6 +6,6 @@ class Cart(models.Model):
     name = models.CharField(max_length=254, default='')
     user = models.ForeignKey(User, null=False)
     product_list = models.CharField(max_length=300, default='', blank=True)
-
+    quantity_list = models.CharField(max_length=300, default='', blank=True)
     def __str__(self):
         return self.name

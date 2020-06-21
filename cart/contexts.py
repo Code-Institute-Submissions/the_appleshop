@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from products.models import Product
 from .models import Cart
 
@@ -23,25 +24,34 @@ def cart_contents(request):
     return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
 
 
-def make_cart_string(cart):
-        return ','.join(str(product_id) for product_id in cart) 
+def make_cart_strings(cart):
+    idstring=""
+    quantitystring=""
+    for k,v in cart.items():
+        idstring+=str(k)+","
+        quantitystring+=str(v)+","
+    return (idstring, quantitystring)
 
 
-def make_cart_dict(productlist):
-    if productlist !="":
-        tmplist= productlist.split(',')
-        tmp_wishlist = [int(product) for product in tmplist]
-        return tmp_wishlist
-    else:
-        return []
+def make_cart_dict(productstring, quantitystring):
+
+    idlist = productstring.split(',')
+    idlist.pop(len(idlist)-1)
+    quantitylist = quantitystring.split(',')
+    quantitylist.pop(len(quantitylist)-1)
+    quantitylist_iter = iter(quantitylist)
+    newcart = {}
+    for id in idlist:
+            newcart[id]=next(quantitylist_iter)
+    return newcart
 
 
-def merge_carts(tmp_cartdict_from_db, cartdict):
-    merged_cartdict = cartdict
-    for product in tmp_cartdict_from_db:
-        if product not in merged_cartdict:
-            merged_cartdict.append(product)
-    return merged_cartdict
+def merge_carts(tmp_cart_from_db, cart):
+    merged_cart = cart
+    for product in tmp_cart_from_db:
+        if product not in merged_cart:
+            merged_cart[product]=product[product]
+    return merged_cart
 
 
 
@@ -56,58 +66,25 @@ def sync_carts(request):
     except:
         messages.success(request, "Saving cart to database")
         name = str(request.user)+"'s cart"
-        user_wishlist = Wishlist(user=request.user, name=name, product_list="")
-        user_wishlist.save()
+        user_cart = Cart(user=request.user, name=name, product_list="")
+        user_cart.save()
 
-    if user_cart.product_list!=""
+    if user_cart.product_list != "":
         if cart == {}:
-            request.session['cart'] = make_cart_list(user_cart.product_list)
+            request.session['cart'] = make_cart_dict(user_cart.product_list, user_cart.quantity_list)
         else:
-            tmp_wishlist_db=make_wishlist_list(user_wishlist.product_list)
-            merged_wishlist = merge_wishlists(tmp_wishlist_db, wishlist)
-            user_wishlist.product_list = make_wishlist_string(merged_wishlist)
-            user_wishlist.save()
-            request.session['wishlist'] = merged_wishlist
+            tmp_cart_db=make_cart_dict(user_cart.product_list, user_cart.quantity_list)
+            merged_cart = merge_carts(tmp_cart_db, cart)
+            tmp_strings = make_cart_strings(merged_cart) 
+            user_cart.product_list = tmp_strings[0]
+            user_cart.quantity_list = tmp_strings[1]
+            user_cart.save()
+            request.session['wishlist'] = merged_cart
 
     elif user_cart.product_list=="": 
         if cart != {}:
-            user_cart.product_list = make_cart_string(cart) 
+            tmp_strings = make_cart_strings(cart) 
+            user_cart.product_list = tmp_strings[0]
+            user_cart.quantity_list = tmp_strings[1]
             user_cart.save()
-    return
-    
-    testcart=[]
-    for k,v in cart.items():
-        testcart.append((k,v))
-    newcart=dict(testcart)
-    
-
-
-
-def sync_wishlists(request):
-    wishlist = request.session.get('wishlist', [])
-    user_wishlist = None
-    try:
-        user_wishlist = Wishlist.objects.get(user=request.user.id)
-
-    except:
-        messages.success(request, "Saving wishlist to database")
-        name = str(request.user)+"'s wishlist"
-        user_wishlist = Wishlist(user=request.user, name=name, product_list="")
-        user_wishlist.save()
-    
-    if user_wishlist.product_list!="":
-        if wishlist == []:
-            request.session['wishlist'] = make_wishlist_list(user_wishlist.product_list)
-
-        else:
-            tmp_wishlist_db=make_wishlist_list(user_wishlist.product_list)
-            merged_wishlist = merge_wishlists(tmp_wishlist_db, wishlist)
-            user_wishlist.product_list = make_wishlist_string(merged_wishlist)
-            user_wishlist.save()
-            request.session['wishlist'] = merged_wishlist
-
-    elif user_wishlist.product_list=="": 
-        if wishlist != []:
-            user_wishlist.product_list = make_wishlist_string(wishlist) 
-            user_wishlist.save()
     return
