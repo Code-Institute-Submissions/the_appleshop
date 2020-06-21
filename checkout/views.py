@@ -31,7 +31,7 @@ def checkout(request):
         messages.success(request, "This is your current Shipping Address.")
         address='yes'
     except:
-        messages.success(request, "No address found in database")
+        messages.success(request, "Please enter your shipment address.")
 
     if request.method=="POST":            
         order_form = OrderForm(request.POST)
@@ -39,7 +39,6 @@ def checkout(request):
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
-            order.order_paid = True
             order.save()
             cart = request.session.get('cart', {})
             total = 0
@@ -64,6 +63,8 @@ def checkout(request):
                 messages.error(request, "Your card was declined!")
 
             if customer.paid:
+                order.order_paid = True
+                order.save()
                 messages.error(request, "You have successfully paid")
                 update_ordered_pcs(request)
                 request.session['cart'] = {}

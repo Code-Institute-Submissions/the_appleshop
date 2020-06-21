@@ -71,7 +71,7 @@ def user_profile(request):
 
         except:
             user_address_current = UserAddress.objects.create(user=request.user)
-            user_addressform=UserAddressForm()
+            user_addressform=UserAddressForm(instance=user_address_current)
             address='no'
             messages.success(request, "Shipping Address not found.")
 

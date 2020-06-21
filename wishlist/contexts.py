@@ -12,10 +12,10 @@ def wishlist_contents(request):
     Ensures that the wishlist contents are available when rendering
     every page
     """
+    if request.user.is_authenticated:
+        sync_wishlists(request)
     wishlist = request.session.get('wishlist', [])
     wishlist_items = []
-    if request.user.is_authenticated:
-        get_and_update_wishlist(request)
     for id in wishlist:
         product = get_object_or_404(Product, pk=id)
         wishlist_items.append({'product': product})
@@ -44,7 +44,7 @@ def merge_wishlists(tmp_wishlist_from_db, wishlist):
 
 
 @login_required
-def get_and_update_wishlist(request):
+def sync_wishlists(request):
     wishlist = request.session.get('wishlist', [])
     user_wishlist = None
     try:
@@ -53,8 +53,7 @@ def get_and_update_wishlist(request):
     except:
         messages.success(request, "Saving wishlist to database")
         name = str(request.user)+"'s wishlist"
-        product_list = make_wishlist_string(wishlist)
-        user_wishlist = Wishlist(user=request.user, name=name, product_list=product_list)
+        user_wishlist = Wishlist(user=request.user, name=name, product_list="")
         user_wishlist.save()
     
     if user_wishlist.product_list!="":

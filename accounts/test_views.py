@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, UserAddressForm
+from .models import UserAddress
 
-# Create your tests here.
 
 class TestAccountsRegistrationView(TestCase):
 
@@ -76,4 +76,14 @@ class TestAccountsProfileView(TestCase):
         self.assertIn(b"Update Address!", page.content)
 
 
-
+    # def test_post_an_address_in_profile_view(self):
+    #     self.client.post('/accounts/register/', data={'username': 'testuser', 'email': 'testuser@domain.com', 'password1': 'password', 'password2':'password'})
+    #     self.client.post('/accounts/login/', data={'username': 'testuser', 'password': 'password'})
+    #     #new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')
+    #     #self.client.login(username='testuser', password='password')
+    #     self.client.post('/profile/', data={'full_name': 'John Doe', 'phone_number': '123456789',
+    #                   'country': 'Netherlands', 'postcode': '1234',
+    #                   'town_or_city': 'Amsterdam', 'street_address1': 'Street',
+    #                   'street_address2': '22', 'county': 'North'})
+    #     new_address = UserAddress.objects.get(user=testuser)
+    #     #self.assertEqual(new_address, "")

@@ -2,7 +2,7 @@ from django.test import TestCase
 from products.models import Product
 
 
-class TestAddToCartViews(TestCase):
+class TestAddToCartView(TestCase):
 
     def test_response_view_cart(self):
         response = self.client.get("/cart/", content_type="html/text", follow=True)
@@ -24,7 +24,7 @@ class TestAddToCartViews(TestCase):
         self.assertEqual(cart, {'1': 22})
 
 
-class TestAdjustCartViews(TestCase):
+class TestAdjustCartView(TestCase):
 
     def test_increase_product_quantity_on_cart(self):
         self.client.post('/cart/add/1', data={'quantity': 11})
