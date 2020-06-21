@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from products.models import Product
 from .models import Cart
+import yaml
 
 
 def cart_contents(request):
@@ -10,10 +11,10 @@ def cart_contents(request):
     Ensures that the cart contents are available when rendering
     every page
     """
-    if request.user.is_authenticated:
-        sync_carts(request)
     cart = request.session.get('cart', {})
     cart_items = []
+    if request.user.is_authenticated:
+        sync_carts(request)
     total = 0
     product_count = 0
     for id, quantity in cart.items():
@@ -24,17 +25,24 @@ def cart_contents(request):
     return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
 
 
+"""
+method not in use anymore as I found dictionary conversion
+into string and converting back to dictionary with yaml better
+to store whole cart content into one field in db. But splitting
+the cart dictionary into two strings (one for keys and one for values)
+to make it fit for a CharField worked too, same as for re-conversion
+from string to dictionary.
+
 def make_cart_strings(cart):
-    idstring=""
-    quantitystring=""
-    for k,v in cart.items():
-        idstring+=str(k)+","
-        quantitystring+=str(v)+","
-    return (idstring, quantitystring)
+        idstring=""
+        quantitystring=""
+        for k,v in cart.items():
+            idstring+=str(k)+","
+            quantitystring+=str(v)+","
+        return (idstring, quantitystring)
 
 
 def make_cart_dict(productstring, quantitystring):
-
     idlist = productstring.split(',')
     idlist.pop(len(idlist)-1)
     quantitylist = quantitystring.split(',')
@@ -42,17 +50,17 @@ def make_cart_dict(productstring, quantitystring):
     quantitylist_iter = iter(quantitylist)
     newcart = {}
     for id in idlist:
-            newcart[id]=next(quantitylist_iter)
+        newcart[id]=next(quantitylist_iter)
     return newcart
+"""
 
 
 def merge_carts(tmp_cart_from_db, cart):
     merged_cart = cart
-    for product in tmp_cart_from_db:
-        if product not in merged_cart:
-            merged_cart[product]=product[product]
+    for id, quantity in tmp_cart_from_db.items():
+        if id not in merged_cart:
+            merged_cart[id]=quantity
     return merged_cart
-
 
 
 @login_required
@@ -71,20 +79,16 @@ def sync_carts(request):
 
     if user_cart.product_list != "":
         if cart == {}:
-            request.session['cart'] = make_cart_dict(user_cart.product_list, user_cart.quantity_list)
+            request.session['cart'] = yaml.load(user_cart.product_list, Loader=yaml.FullLoader)
         else:
-            tmp_cart_db=make_cart_dict(user_cart.product_list, user_cart.quantity_list)
+            tmp_cart_db=yaml.load(user_cart.product_list, Loader=yaml.FullLoader)
             merged_cart = merge_carts(tmp_cart_db, cart)
-            tmp_strings = make_cart_strings(merged_cart) 
-            user_cart.product_list = tmp_strings[0]
-            user_cart.quantity_list = tmp_strings[1]
+            user_cart.product_list = str(merged_cart)
             user_cart.save()
-            request.session['wishlist'] = merged_cart
+            request.session['cart'] = merged_cart
 
     elif user_cart.product_list=="": 
         if cart != {}:
-            tmp_strings = make_cart_strings(cart) 
-            user_cart.product_list = tmp_strings[0]
-            user_cart.quantity_list = tmp_strings[1]
+            user_cart.product_list = str(cart)
             user_cart.save()
     return

@@ -130,20 +130,22 @@
     <p id="t77" class="pln"><span class="n"><a href="#t77">77</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t78" class="pln"><span class="n"><a href="#t78">78</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t79" class="pln"><span class="n"><a href="#t79">79</a></span><span class="t">    <span class="com"># def test_post_an_address_in_profile_view(self):</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t80" class="pln"><span class="n"><a href="#t80">80</a></span><span class="t">    <span class="com">#     new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t81" class="pln"><span class="n"><a href="#t81">81</a></span><span class="t">    <span class="com">#     self.client.login(username='testuser', password='password')</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t82" class="pln"><span class="n"><a href="#t82">82</a></span><span class="t">    <span class="com">#     self.client.post('/profile/', data={'full_name': 'John Doe', 'phone_number': '123456789',</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t83" class="pln"><span class="n"><a href="#t83">83</a></span><span class="t">    <span class="com">#                   'country': 'Netherlands', 'postcode': '1234',</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t84" class="pln"><span class="n"><a href="#t84">84</a></span><span class="t">    <span class="com">#                   'town_or_city': 'Amsterdam', 'street_address1': 'Street',</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t85" class="pln"><span class="n"><a href="#t85">85</a></span><span class="t">    <span class="com">#                   'street_address2': '22', 'county': 'North'})</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t86" class="pln"><span class="n"><a href="#t86">86</a></span><span class="t">    <span class="com">#     new_address = UserAddress.objects.all()</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t87" class="pln"><span class="n"><a href="#t87">87</a></span><span class="t">    <span class="com">#     #self.assertEqual(new_address, "")</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t80" class="pln"><span class="n"><a href="#t80">80</a></span><span class="t">    <span class="com">#     self.client.post('/accounts/register/', data={'username': 'testuser', 'email': 'testuser@domain.com', 'password1': 'password', 'password2':'password'})</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t81" class="pln"><span class="n"><a href="#t81">81</a></span><span class="t">    <span class="com">#     self.client.post('/accounts/login/', data={'username': 'testuser', 'password': 'password'})</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t82" class="pln"><span class="n"><a href="#t82">82</a></span><span class="t">    <span class="com">#     #new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t83" class="pln"><span class="n"><a href="#t83">83</a></span><span class="t">    <span class="com">#     #self.client.login(username='testuser', password='password')</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t84" class="pln"><span class="n"><a href="#t84">84</a></span><span class="t">    <span class="com">#     self.client.post('/profile/', data={'full_name': 'John Doe', 'phone_number': '123456789',</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t85" class="pln"><span class="n"><a href="#t85">85</a></span><span class="t">    <span class="com">#                   'country': 'Netherlands', 'postcode': '1234',</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t86" class="pln"><span class="n"><a href="#t86">86</a></span><span class="t">    <span class="com">#                   'town_or_city': 'Amsterdam', 'street_address1': 'Street',</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t87" class="pln"><span class="n"><a href="#t87">87</a></span><span class="t">    <span class="com">#                   'street_address2': '22', 'county': 'North'})</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t88" class="pln"><span class="n"><a href="#t88">88</a></span><span class="t">    <span class="com">#     new_address = UserAddress.objects.get(user=testuser)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t89" class="pln"><span class="n"><a href="#t89">89</a></span><span class="t">    <span class="com">#     #self.assertEqual(new_address, "")</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-21 05:22
+            created at 2020-06-21 09:37
         </p>
     </div>
 </div>

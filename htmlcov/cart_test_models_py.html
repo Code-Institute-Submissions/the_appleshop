@@ -59,13 +59,13 @@
     <p id="t6" class="run"><span class="n"><a href="#t6">6</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_cart_model_return_name</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t7" class="run"><span class="n"><a href="#t7">7</a></span><span class="t">        <span class="nam">new_user</span> <span class="op">=</span> <span class="nam">User</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">create_user</span><span class="op">(</span><span class="str">'testuser'</span><span class="op">,</span> <span class="str">'testuser@domain.com'</span><span class="op">,</span> <span class="str">'password'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t8" class="run"><span class="n"><a href="#t8">8</a></span><span class="t">        <span class="nam">cart</span> <span class="op">=</span> <span class="nam">Cart</span><span class="op">(</span><span class="nam">user</span><span class="op">=</span><span class="nam">new_user</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">'testusers cart'</span><span class="op">,</span> <span class="nam">product_list</span><span class="op">=</span><span class="op">[</span><span class="op">(</span><span class="num">1</span><span class="op">,</span><span class="num">5</span><span class="op">)</span><span class="op">,</span><span class="op">(</span><span class="num">2</span><span class="op">,</span><span class="num">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t9" class="run"><span class="n"><a href="#t9">9</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">str</span><span class="op">(</span><span class="nam">cart</span><span class="op">)</span><span class="op">,</span> <span class="str">'testusers cart'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t9" class="run"><span class="n"><a href="#t9">9</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">str</span><span class="op">(</span><span class="nam">cart</span><span class="op">)</span><span class="op">,</span> <span class="str">"testusers cart"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-20 05:01
+            created at 2020-06-21 09:37
         </p>
     </div>
 </div>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from .models import Cart
 
 # Create your views here.
 def view_cart(request):
@@ -15,6 +16,14 @@ def add_to_cart(request, id):
     else:
         cart[id] = quantity
     request.session['cart'] = cart
+    if request.user.is_authenticated:
+        try:
+            user_cart = Cart.objects.get(user=request.user.id)
+        except:
+            name = str(request.user)+"'s cart"
+            user_cart = Cart(user=request.user, name=name, product_list="")
+        user_cart.product_list = str(cart) 
+        user_cart.save()
     return redirect(reverse('index'))
 
 
@@ -30,4 +39,12 @@ def adjust_cart(request, id):
     else:
         cart.pop(id)
     request.session['cart'] = cart
+    if request.user.is_authenticated:
+        try:
+            user_cart = Cart.objects.get(user=request.user.id)
+        except:
+            name = str(request.user)+"'s cart"
+            user_cart = Cart(user=request.user, name=name, product_list="")
+        user_cart.product_list = str(cart) 
+        user_cart.save()
     return redirect(reverse('view_cart'))
