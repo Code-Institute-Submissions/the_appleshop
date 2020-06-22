@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Cart
 
-# Create your views here.
+
 def view_cart(request):
     """A View that renders the cart contents page"""
     return render(request, "cart.html")
