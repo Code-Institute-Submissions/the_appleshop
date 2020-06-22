@@ -17,7 +17,7 @@ def add_to_wishlist(request, id):
     product = get_object_or_404(Product, pk=int(id))
 
     if int(id) not in wishlist:
-        wishlist.append(int(id)) 
+        wishlist.append(int(id))
         request.session['wishlist'] = wishlist
         messages.success(request, "Product {0} has been added to wishlist".format(product))
 
@@ -38,8 +38,8 @@ def remove_from_wishlist(request, id):
     wishlist = request.session.get('wishlist', [])
     product = get_object_or_404(Product, pk=int(id))
     if int(id) in wishlist:
-        wishlist.remove(int(id))    
-        request.session['wishlist'] = wishlist    
+        wishlist.remove(int(id))
+        request.session['wishlist'] = wishlist
         messages.success(request, "Product {0} has been removed from wishlist".format(product))
     if request.user.is_authenticated:
         try:
@@ -47,7 +47,7 @@ def remove_from_wishlist(request, id):
         except:
             name = str(request.user)+"'s wishlist"
             user_wishlist = Wishlist(user=request.user, name=name, product_list="")
-            user_wishlist.product_list = make_wishlist_string(wishlist)
+        user_wishlist.product_list = make_wishlist_string(wishlist)
         user_wishlist.save()
     if request.method=='GET':
         return redirect(reverse('view_wishlist'))

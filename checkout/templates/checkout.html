@@ -42,10 +42,16 @@
     </div>
 
     <div class="form-group col-md-6">
+        {% if order_form.full_name.value == "" %}
+        <p>Please enter your shipping address</p>
+        {% else %}
+        <p>Your current shipping address</p>
+        {% endif %}
         {{ order_form | as_bootstrap }}
     </div>
 
     <div class="form-group col-md-6">
+        <p>Please enter your payment details</p>
         {{ payment_form | as_bootstrap }}
     </div>
 

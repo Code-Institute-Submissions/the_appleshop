@@ -6,10 +6,10 @@
 {% block page_heading %}{{ user }}'s Profile{% endblock %}
 
 {% block content %}
-{% if address == 'no' %}
+{% if user_addressform.full_name.value == "" %}
 <p>No record found, please enter your shipping address.</p>
-{% elif address == 'yes' %}
-<p>We found this shipping address.</p>
+{% else %}
+<p>Your shipping address.</p>
 {% endif %}
 
 

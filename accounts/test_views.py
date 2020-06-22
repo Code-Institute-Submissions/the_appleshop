@@ -24,7 +24,7 @@ class TestAccountsRegistrationView(TestCase):
         new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')
         response=self.client.post('/accounts/register/', data={'username': 'testuser', 'email': 'testuser@domain.com', 'password1': 'password', 'password2':'password'})
         self.assertIn(b'Email address must be unique', response.content)
-   
+
 
 class TestAccountsLoginView(TestCase):
 
@@ -76,14 +76,14 @@ class TestAccountsProfileView(TestCase):
         self.assertIn(b"Update Address!", page.content)
 
 
-    # def test_post_an_address_in_profile_view(self):
-    #     self.client.post('/accounts/register/', data={'username': 'testuser', 'email': 'testuser@domain.com', 'password1': 'password', 'password2':'password'})
-    #     self.client.post('/accounts/login/', data={'username': 'testuser', 'password': 'password'})
-    #     #new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')
-    #     #self.client.login(username='testuser', password='password')
-    #     self.client.post('/profile/', data={'full_name': 'John Doe', 'phone_number': '123456789',
-    #                   'country': 'Netherlands', 'postcode': '1234',
-    #                   'town_or_city': 'Amsterdam', 'street_address1': 'Street',
-    #                   'street_address2': '22', 'county': 'North'})
-    #     new_address = UserAddress.objects.get(user=testuser)
-    #     #self.assertEqual(new_address, "")
+    def test_post_an_address_in_profile_view(self):
+        new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')
+        self.client.login(username='testuser', password='password')
+        user_address = UserAddress.objects.create(user=new_user)
+        page = self.client.get("/accounts/profile/", content_type="html/text", follow=True)
+        self.client.post('/accounts/profile/', {'full_name': 'John Doe', 'phone_number': '123456789',
+                      'country': 'Netherlands', 'postcode': '1234',
+                      'town_or_city': 'Amsterdam', 'street_address1': 'Street',
+                      'street_address2': '22', 'county': 'North'})
+        new_address = UserAddress.objects.get(user=new_user.id)
+        self.assertEqual(new_address.full_name, "John Doe")

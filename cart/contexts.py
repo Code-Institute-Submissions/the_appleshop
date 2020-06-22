@@ -15,6 +15,7 @@ def cart_contents(request):
     if request.user.is_authenticated:
         sync_carts(request)
     #cart = request.session.get('cart', {})
+
     cart_items = []
     total = 0
     product_count = 0
@@ -59,6 +60,7 @@ def make_cart_dict(productstring, quantitystring):
 def merge_carts(tmp_cart_from_db, cart):
     merged_cart = cart
     quantity_change=False
+
     for id, quantity in tmp_cart_from_db.items():
         if id not in merged_cart:
             merged_cart[id]=quantity
@@ -66,7 +68,6 @@ def merge_carts(tmp_cart_from_db, cart):
             if tmp_cart_from_db[id] > merged_cart[id]:
                 merged_cart[id]=quantity
                 quantity_change=True
-
     return merged_cart, quantity_change
 
 
@@ -77,7 +78,6 @@ def sync_carts(request):
 
     try:
         user_cart = Cart.objects.get(user=request.user.id)
-
     except:
         messages.success(request, "Saving cart to database")
         name = str(request.user)+"'s cart"
@@ -89,11 +89,13 @@ def sync_carts(request):
             request.session['cart'] = yaml.load(user_cart.product_list, Loader=yaml.FullLoader)
         else:
             tmp_cart_db=yaml.load(user_cart.product_list, Loader=yaml.FullLoader)
-            merged_cart = merge_carts(tmp_cart_db, cart)
-            user_cart.product_list = str(merged_cart[0])
+            tmp_merged_cart = merge_carts(tmp_cart_db, cart)
+            merged_cart = tmp_merged_cart[0]
+            quantity_change = tmp_merged_cart[1]
+            user_cart.product_list = str(merged_cart)
             user_cart.save()
             request.session['cart'] = merged_cart
-            if merged_cart[1]:
+            if quantity_change:
                 messages.success(request, "Order quantity has been updated for some products with higher value.")
 
     elif user_cart.product_list=="":

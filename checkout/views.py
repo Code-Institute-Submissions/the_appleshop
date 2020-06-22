@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem
+from cart.models import Cart
 from django.conf import settings
 from django.utils import timezone
 from products.models import Product
@@ -28,12 +29,12 @@ def checkout(request):
     user_address_current = None
     try:
         user_address_current = UserAddress.objects.get(user=request.user.id)
-        messages.success(request, "This is your current Shipping Address.")
-        address='yes'
     except:
-        messages.success(request, "Please enter your shipment address.")
+        user_address_current = UserAddress.objects.create(user=request.user)
 
-    if request.method=="POST":            
+    user_addressform=UserAddressForm(instance=user_address_current)
+
+    if request.method=="POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
         if order_form.is_valid() and payment_form.is_valid():
@@ -46,12 +47,12 @@ def checkout(request):
                 product = get_object_or_404(Product, pk=id)
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
-                    order = order, 
-                    product = product, 
+                    order = order,
+                    product = product,
                     quantity = quantity
                     )
                 order_line_item.save()
-                
+
             try:
                 customer = stripe.Charge.create(
                     amount = int(total * 100),
@@ -68,17 +69,15 @@ def checkout(request):
                 messages.error(request, "You have successfully paid")
                 update_ordered_pcs(request)
                 request.session['cart'] = {}
-                try:
-                    user_cart=Cart.objects.get(user=request.user.id)
-                    user_cart.product_list = ""
-                    user_cart.save()
-                    user_address_new = user_addressform.save(commit=False)
-                    user_address_new.user=request.user
-                    user_address_new.pk = user_address_current.pk
-                    user_address_new.save()  
+                user_cart=Cart.objects.get(user=request.user.id)
+                user_cart.product_list = ""
+                user_cart.save()
+                user_addressform = UserAddressForm(request.POST, instance=user_address_current)
+                user_address_new = user_addressform.save(commit=False)
+                user_address_new.user=request.user
+                user_address_new.save()
 
-                except:
-                    return redirect(reverse('products'))
+                return redirect(reverse('products'))
             else:
                 messages.error(request, "Unable to take payment")
         else:
@@ -91,7 +90,6 @@ def checkout(request):
             order_form = OrderForm()
         payment_form = MakePaymentForm()
 
-        
+
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
-                
-            
+

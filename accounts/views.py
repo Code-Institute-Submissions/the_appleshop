@@ -65,24 +65,18 @@ def user_profile(request):
     else:
         try:
             user_address_current = UserAddress.objects.get(user=request.user.id)
-            user_addressform=UserAddressForm(instance=user_address_current)
-            messages.success(request, "This is your current Shipping Address.")
-            address='yes'
 
         except:
             user_address_current = UserAddress.objects.create(user=request.user)
-            user_addressform=UserAddressForm(instance=user_address_current)
-            address='no'
-            messages.success(request, "Shipping Address not found.")
+
+        user_addressform=UserAddressForm(instance=user_address_current)
 
         if request.method == "POST":
-            user_addressform = UserAddressForm(request.POST)
+            user_addressform = UserAddressForm(request.POST, instance=user_address_current)
             if user_addressform.is_valid:
                 user_address_new = user_addressform.save(commit=False)
                 user_address_new.user=request.user
-                user_address_new.pk = user_address_current.pk
                 user_address_new.save()
             messages.success(request, "Shipping Address updated.")
-            address='updated'
-    
-    return render(request, 'profile.html', {'user_addressform': user_addressform, 'address': address})
+
+    return render(request, 'profile.html', {'user_addressform': user_addressform})
