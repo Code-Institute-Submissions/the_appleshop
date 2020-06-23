@@ -33,6 +33,11 @@
     {% endfor %}
 </div>
 <div class="row">
+    {% if shippingfee == "FREE" %}
+    <p>FREE SHIPPING!</p>
+    {% else %}
+    <p>{{shippingfee}} EUR Shipping</p>
+    {% endif %}
     <p>Total</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
     <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign"

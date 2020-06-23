@@ -11,13 +11,11 @@ class Product(models.Model):
     first_developed = models.CharField(max_length=4, default='', blank=False)
     description = models.TextField()
     use = models.CharField(max_length=254, choices=USE_CHOICES, default='')
-    view_count = models.IntegerField(default=0) 
-    review_count = models.IntegerField(default=0) 
+    view_count = models.IntegerField(default=0)
+    review_count = models.IntegerField(default=0)
     tags = models.CharField(max_length=254, default='')
     fruit = models.CharField(max_length=254, default='', choices=FRUIT_CHOICES)
     ordered_pcs = models.IntegerField(default=0)
-    
-
 
     def __str__(self):
         return self.name

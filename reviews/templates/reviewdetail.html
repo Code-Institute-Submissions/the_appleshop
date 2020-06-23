@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-2 col-sm-3 text-center">
+            <a class="story-img" href="#">
+                <img src="/media/img/profile.jpg" class="img-circle">
+            </a>
+        </div>
+        <div class="col-sm-10 col-md-9">
+            <h3>{{ review.title }} for {{ review.product.name }}</h3>
+            <p>{{ review.comment }}</p>
+
+            {% if review.image %}
+                <img class="img-blogpost" src="/media/{{ review.image }}">
+            {% endif %}
+            <p>{{ review.rating }}</p>
+
+            <div class="row">
+                <div class="col-xs-9">
+                    <p>{{ review.comment }}</p>
+                    <p><span class="boldtext">Published by:</span> {{ review.author.name }} </p>
+                    <p><span class="boldtext">Published on:</span> {{ review.created_date }} </p>
+                    <p><span class="boldtext">Views:</span> {{review.view_count}}</p>
+                    <p><span class="boldtext">Rating:</span> {{ review.rating }}</p>
+                    <a href="{% url 'product_detail' review.product.id %}" class="btn btn-default">Back to {{ review.product.name }}</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Post</a>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -15,7 +15,7 @@ def cart_contents(request):
     if request.user.is_authenticated:
         sync_carts(request)
     #cart = request.session.get('cart', {})
-
+    shippingfee=8
     cart_items = []
     total = 0
     product_count = 0
@@ -24,7 +24,13 @@ def cart_contents(request):
         total += quantity * product.price
         product_count += quantity
         cart_items.append({'id': id, 'quantity': quantity, 'product': product})
-    return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
+    if total < 50:
+        total+=shippingfee
+    else:
+        shippingfee="FREE"
+
+
+    return {'cart_items': cart_items, 'total': total, 'product_count': product_count, 'shippingfee': shippingfee}
 
 
 """
