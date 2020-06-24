@@ -57,7 +57,7 @@ def create_review(request, pk):
 
 
 
-def edit_review(request, pk=None):
+def edit_review(request, pk):
     """
     Create a view that allows us to create
     or edit a review depending if the Review ID
@@ -82,6 +82,5 @@ def delete_review(request, pk):
     """
     review = get_object_or_404(Review, pk=pk)
     review.delete()
-    review.save()
     messages.success(request, "Review has been deleted")
     return redirect(reverse('get_reviews'))

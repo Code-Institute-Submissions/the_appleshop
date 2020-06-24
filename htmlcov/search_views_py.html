@@ -57,12 +57,16 @@
     <p id="t4" class="run"><span class="n"><a href="#t4">4</a></span><span class="t"><span class="key">def</span> <span class="nam">do_search</span><span class="op">(</span><span class="nam">request</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t5" class="run"><span class="n"><a href="#t5">5</a></span><span class="t">    <span class="nam">products</span> <span class="op">=</span> <span class="nam">Product</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">filter</span><span class="op">(</span><span class="nam">name__icontains</span><span class="op">=</span><span class="nam">request</span><span class="op">.</span><span class="nam">GET</span><span class="op">[</span><span class="str">'q'</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t6" class="run"><span class="n"><a href="#t6">6</a></span><span class="t">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">'products.html'</span><span class="op">,</span> <span class="op">{</span><span class="str">'products'</span><span class="op">:</span> <span class="nam">products</span><span class="op">}</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t7" class="pln"><span class="n"><a href="#t7">7</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t"><span class="com"># def do_ext_search(request):</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t9" class="pln"><span class="n"><a href="#t9">9</a></span><span class="t"><span class="com">#     if request.method=="POST":</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t10" class="pln"><span class="n"><a href="#t10">10</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-09 01:13
+            created at 2020-06-24 10:13
         </p>
     </div>
 </div>
