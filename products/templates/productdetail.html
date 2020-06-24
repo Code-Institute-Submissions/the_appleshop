@@ -28,7 +28,7 @@
             </form>
             {% endif %}
             {% if product.name in purchased_products %}
-            <form method="POST" action="{% url 'new_review' %}">
+            <form method="POST" action="{% url 'new_review' product.id %}">
                 {% csrf_token %}
                 <span class="input-group-btn">
                     <button class="btn btn-success" type="submit">Review!</button>

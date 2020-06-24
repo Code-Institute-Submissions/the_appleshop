@@ -35,16 +35,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         {% if "products" in app_path %}
-                        <a href="{% url 'products' %}"><i class="fa fa-home active-app"></i></a>
+                        <a href="{% url 'products' %}"><i class="fa fa-home active-app"></i> Products</a>
                         {% else %}
-                        <a href="{% url 'products' %}"><i class="fa fa-home"></i></a>
+                        <a href="{% url 'products' %}"><i class="fa fa-home"></i> Products</a>
                         {% endif %}
                     </li>
                     <li>
                         {% if "search" in app_path %}
-                        <a href="{% url 'search' %}"><i class="fa fa-search active-app"></i></a>
+                        <a href="{% url 'search' %}"><i class="fa fa-search active-app"></i> Search</a>
                         {% else %}
-                        <a href="{% url 'search' %}"><i class="fa fa-search"></i></a>
+                        <a href="{% url 'search' %}"><i class="fa fa-search"></i> Search</a>
                         {% endif %}
                     </li>
                     <li>
@@ -56,9 +56,9 @@
                     </li>
                     <li>
                         {% if "wishlist" in app_path %}
-                        <a href="{% url 'view_wishlist' %}"><i class="fa fa-star active-app"></i>
+                        <a href="{% url 'view_wishlist' %}"><i class="fa fa-star active-app"></i> Wishlist
                             {% else %}
-                            <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i>
+                            <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i> Wishlist
                                 {% endif %}
                                 {%if wishlist_count > 0 %}
                                 <label class="badge badge-warning">{{ wishlist_count }}</label>

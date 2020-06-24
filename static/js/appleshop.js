@@ -16,3 +16,7 @@ function cancelDeleteReview() {
         $('#deletePopup').css("transform", "translateX(-100vw)");
     }, 400);
 }
+
+function sendDeleteForm() {
+    $('#deletePopupForm').submit();
+}

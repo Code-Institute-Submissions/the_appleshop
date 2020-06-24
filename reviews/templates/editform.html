@@ -2,9 +2,9 @@
 {% load bootstrap_tags %}
 {% block content %}
     <h1>Add a new or edit Review</h1>
-    <form method="POST" action="{% url 'edit_review' review.id %}"" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ reviewform | as_bootstrap }}
+        {{ form | as_bootstrap }}
         <button type="submit" class="btn btn-info">Save</button>
     </form>
 {% endblock %}
