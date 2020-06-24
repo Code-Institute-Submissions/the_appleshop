@@ -33,7 +33,7 @@
     <p>Total</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
     {% if total < 50 %}
-    <p>incl. {{ shippingfee }} EUR shipping</p>
+    <p>(incl. {{ shippingfee }} EUR shipping fee)</p>
     {% else %}
     <p>{{shippingfee}} Shipping</p>
     {% endif %}
