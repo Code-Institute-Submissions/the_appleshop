@@ -27,7 +27,7 @@ def update_ordered_pcs(request):
 @login_required()
 def checkout(request):
     user_address_current = None
-    shipping_cost=8
+    shippingfee=8
     try:
         user_address_current = UserAddress.objects.get(user=request.user.id)
     except:
@@ -48,11 +48,14 @@ def checkout(request):
                 product = get_object_or_404(Product, pk=id)
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
+                    user = request.user,
                     order = order,
                     product = product,
                     quantity = quantity
                     )
                 order_line_item.save()
+            if total < 50:
+                total+=shippingfee
             try:
                 customer = stripe.Charge.create(
                     amount = int(total * 100),

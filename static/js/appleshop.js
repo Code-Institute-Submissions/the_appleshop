@@ -5,6 +5,7 @@ $(document).ready(function(){
 // show delete recipe confirmation popup
 function showdeleteReviewPopup() {
     $('#deletePopup').css("transform", "translateX(0vw)");
+
     $('#deletePopup').css("opacity", "1.0");
 }
 

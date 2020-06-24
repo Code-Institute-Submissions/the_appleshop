@@ -7,7 +7,8 @@
 <div class="row row-flex">
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
         <div class="panel-body">
-            <img src="{{ MEDIA_URL }}{{product.image}}" alt="image of {{product.name}}" style="width:150px;height:150px;">
+            <img src="{{ MEDIA_URL }}{{product.image}}" alt="image of {{product.name}}"
+                style="width:150px;height:150px;">
             <!--
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
             <h3>{{product.name}}</h3>
@@ -26,6 +27,15 @@
                 </span>
             </form>
             {% endif %}
+            {% if product.name in purchased_products %}
+            <form method="POST" action="{% url 'new_review' %}">
+                {% csrf_token %}
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="submit">Review!</button>
+                </span>
+            </form>
+            {% endif %}
+
             <p class="product-description">{{ product.description }}</p>
             <p>{{ product.price }}</p>
             <p>{{ product.origin }}</p>
@@ -34,7 +44,11 @@
             <p>{{ product.use }}</p>
             <p>{{ product.view_count }}</p>
 
+            {% if product.review_count > 0 %}
+            <p><a href="{% url 'get_reviews' product.id %}">{{ product.review_count }}</a></p>
+            {% else %}
             <p>{{ product.review_count }}</p>
+            {% endif %}
 
             <p>{{ product.fruit }}</p>
             <p>{{ product.ordered_pcs }}</p>
@@ -53,18 +67,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-
-name = models.CharField(max_length=254, default='')
-image = models.ImageField(upload_to='images')
-price = models.DecimalField(max_digits=6, decimal_places=2)
-origin = models.CharField(max_length=254, default='', blank=False)
-first_developed = models.CharField(max_length=4, default='', blank=False)
-description = models.TextField()
-use = models.CharField(max_length=254, choices=USE_CHOICES, default='')
-view_count = models.IntegerField(default=0)
-review_count = models.IntegerField(default=0)
-tags = models.CharField(max_length=254, default='')
-fruit = models.CharField(max_length=254, default='', choices=FRUIT_CHOICES)
-ordered_pcs = models.IntegerField(default=0)

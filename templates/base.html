@@ -33,20 +33,73 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        {% if "products" in app_path %}
+                        <a href="{% url 'products' %}"><i class="fa fa-home active-app"></i></a>
+                        {% else %}
+                        <a href="{% url 'products' %}"><i class="fa fa-home"></i></a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if "search" in app_path %}
+                        <a href="{% url 'search' %}"><i class="fa fa-search active-app"></i></a>
+                        {% else %}
+                        <a href="{% url 'search' %}"><i class="fa fa-search"></i></a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if "reviews" in app_path %}
+                        <a href="{% url 'get_reviews' %}"><i class="fa fa-comment active-app"></i> Reviews</a>
+                        {% else %}
+                        <a href="{% url 'get_reviews' %}"><i class="fa fa-comment"></i> Reviews</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if "wishlist" in app_path %}
+                        <a href="{% url 'view_wishlist' %}"><i class="fa fa-star active-app"></i>
+                            {% else %}
+                            <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i>
+                                {% endif %}
+                                {%if wishlist_count > 0 %}
+                                <label class="badge badge-warning">{{ wishlist_count }}</label>
+                                {% endif %}
+                            </a>
+                    </li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
+                    <li>
+                        {% if "profile" in app_path %}
+                        <a href="{% url 'profile' %}"><i class="fa fa-user active-app"></i> Profile</a>
+                        {% else %}
+                        <a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a>
+                        {% endif %}
+                    </li>
                     <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                     {%  else %}
-                    <li><a href="{% url 'registration' %}"><i class="fa fa-user-plus"></i> Register</a></li>
-                    <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
+                    <li>
+                        {% if "register" in app_path %}
+                        <a href="{% url 'registration' %}"><i class="fa fa-user-plus active-app"></i> Register</a>
+                        {%  else %}
+                        <a href="{% url 'registration' %}"><i class="fa fa-user-plus"></i> Register</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if "login" in app_path %}
+                        <a href="{% url 'login' %}"><i class="fa fa-sign-in active-app"></i> Log In</a>
+                        {%  else %}
+                        <a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a>
+                        {% endif %}
+                    </li>
                     {% endif %}
                     <li>
-                        <a href="{% url 'view_cart' %}">
-                            <i class="fa fa-shopping-cart"></i> Cart
-                            {% if product_count > 0 %}
-                            <label class="badge badge-warning">{{ product_count }}</label>
-                            {% endif %}
-                        </a>
+                        {% if "cart" in app_path %}
+                        <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart active-app"></i>
+                            {% else %}
+                            <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i>
+                                {% endif %}
+                                {%if product_count > 0 %}
+                                <label class="badge badge-warning">{{ product_count }}</label>
+                                {% endif %}
+                            </a>
                     </li>
                     <li></li>
                 </ul>
@@ -64,12 +117,7 @@
     </div>
     {% endif %}
     <div class="container">
-        <div class="display">
-            <form action="{% url 'search' %}" method="GET">
-                <input type="text" name="q">
-                <button type="submit">Search</button>
-            </form>
-        </div>
+
         {% block content %}{% endblock %}
     </div>
     <footer>
@@ -95,7 +143,6 @@
                         <a href="{% url 'products' %}"><i class="fa fa-search"></i></a>
                         {% endif %}
                     </li>
-
                     <li class="quicklinks">
                         {% if "wishlist" in app_path %}
                         <a href="{% url 'view_wishlist' %}"><i class="fa fa-star active-app"></i>
@@ -106,7 +153,6 @@
                                 <label class="badge badge-warning">{{ wishlist_count }}</label>
                                 {% endif %}
                             </a>
-
                     </li>
                     <li class="quicklinks">
                         {% if "cart" in app_path %}
@@ -119,15 +165,13 @@
                                 {% endif %}
                             </a>
                     </li>
-
                     <li class="quicklinks">
                         {% if "accounts" in app_path %}
-                        <a href="{% url 'profile' %}"><i class="fa fa-user active-app"></i></a>
+                        <a href="{% url 'profile' %}"><i class="fa fa-user active-app"></i> </a>
                         {% else %}
                         <a href="{% url 'profile' %}"><i class="fa fa-user"></i></a>
                         {% endif %}
                     </li>
-
                 </ul>
             </div>
 

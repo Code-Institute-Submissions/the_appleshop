@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block head_js %}
+{% endblock head_js %}
+{% block content %}
+
+
+
+<div class="display">
+    <form action="{% url 'search' %}" method="GET">
+        <input type="text" name="q">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+{% if products %}
+
+{% endif %}
+{% endblock %}

@@ -8,7 +8,7 @@ class Review(models.Model):
 
     title = models.CharField(max_length=254, default='')
     product = models.ForeignKey(Product)
-    image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='images', blank=True, null=True)
     author = models.ForeignKey(User)
     rating = models.IntegerField(default=0)
     comment = models.TextField()
@@ -16,4 +16,4 @@ class Review(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.title
