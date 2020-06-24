@@ -4,3 +4,4 @@ __pycache__/
 env.py
 .DS_Store
 .vscode
+htmlcov/env_py.html
