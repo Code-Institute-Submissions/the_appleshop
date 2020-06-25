@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 ALLOWED_HOSTS = ['127.0.0.1', 'the-appleshop.herokuapp.com']
 
@@ -92,6 +92,11 @@ WSGI_APPLICATION = 'appleshop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
+if os.getenv("DEBUG"):
+    DEBUG = True
+else:
+    DEBUG = False
 
 
 if os.getenv("TESTING") == "True":
