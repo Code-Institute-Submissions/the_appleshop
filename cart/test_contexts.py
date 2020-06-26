@@ -1,5 +1,4 @@
 from django.test import TestCase
-#from .views import add_to_cart
 from products.models import Product
 from django.views.generic import View, TemplateView, RedirectView
 from django.contrib.auth.models import User

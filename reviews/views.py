@@ -7,15 +7,12 @@ from django.utils import timezone
 from django.contrib import messages
 
 
-def get_reviews(request, pk=None):
+def get_reviews(request):
     """
     Creates view with overview of entered reviews prior to 'now'
     """
-    if pk is not None:
-        reviews = Review.objects.filter(pk=pk).order_by('-created_date')
-    else:
-        reviews = Review.objects.filter(created_date__lte=timezone.now()
-            ).order_by('-created_date')
+    reviews = Review.objects.filter(created_date__lte=timezone.now()
+        ).order_by('-created_date')
     return render(request, "reviews.html", {'reviews': reviews})
 
 
