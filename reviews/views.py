@@ -44,8 +44,9 @@ def create_review(request, pk):
             form = ReviewForm(request.POST, request.FILES, instance=review)
             if form.is_valid():
                 review = form.save(commit=False)
-                review.author.id=request.user.id
-                review.product.pk=pk
+                review.author.id = request.user.id
+                review.product.pk = pk
+                review.name = product.name
                 review.save()
                 return redirect(review_detail, review.pk)
         else:

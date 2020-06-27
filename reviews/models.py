@@ -8,6 +8,7 @@ class Review(models.Model):
 
     title = models.CharField(max_length=254, default='')
     product = models.ForeignKey(Product)
+    name = models.CharField(max_length=254, default='')
     image = models.ImageField(upload_to='images', blank=True, null=True)
     author = models.ForeignKey(User)
     rating = models.IntegerField(default=0)

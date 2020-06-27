@@ -3,7 +3,7 @@
 {% load bootstrap_tags %}
 {% block content %}
 <div class="display">
-    <form action="{% url 'search' %}" method="GET">
+    <form action="{% url 'review_search' %}" method="GET">
         <input type="text" name="q">
         <button type="submit">Search</button>
     </form>
@@ -14,24 +14,39 @@
 <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
     <div class="panel-body">
         <h3><a href="{% url 'review_detail' review.id %}">{{ review.title }} for {{ review.product.name }}</a></h3>
+        {% if review.image %}
         <img src="{{ MEDIA_URL }}{{review.image}}" alt="image of {{review.product.name}} review"
             style="width:150px;height:150px;">
+        {% endif %}
+
         <!--
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
 
-        <p class="product-description">{{ review.comment|truncatewords:30 }}</p>
+        <p class="product-description">{{ review.comment|truncatewords:10 }}</p>
+        <p><span class="boldtext">Published by:</span> {{ review.author.name }} </p>
+        <p><span class="boldtext">Published on:</span> {{ review.created_date }} </p>
+        <p><span class="boldtext">Views:</span> {{review.view_count}}</p>
         <p><span class="boldtext">Rating:</span>
-
-                {{ review.rating }}
-
+            {{review.rating }}
         </p>
-        <p><a href="{% url 'product_detail' review.product.id %}">{{ review.product.name }}</a></p>
-        <p class="product-description">View count: {{ review.view_count }}</p>
-        <p class="product-description">Reviewed on: {{ review.created_date }}</p>
-
+        <a href="{% url 'product_detail' review.product.id %}" class="btn btn-default">Back to
+            {{ review.product.name }}</a>
+        {% if user.is_authenticated and review.author.id == user.id %}
+        <a href="{% url 'edit_review' review.id %}" class="btn btn-default">Edit Review</a>
+        <a href="{% url 'delete_review' review.id %}" class="btn btn-default" onclick="showdeleteReviewPopup()">Delete Review</a>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
 {% endif %}
+{% if user.is_authenticated and review.author.id == user.id %}
+    <div id="deletePopup">
+        <div id="deletePopupMessage">Are you sure to delete this review ?</div>
+        <form id="deletePopupForm" method="POST" action="{% url 'delete_review' review.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+        </form>
+        <button type="submit" class="btn btn-info" onclick="sendDeleteForm()">Delete</button><button type="cancel" id="deleteReviewPopupCancelBtn" class="btn waves-effect waves-light" onclick="cancelDeleteReview()">
+            Cancel</button>
+    </div>
+    {% endif %}
 {% endblock %}
-

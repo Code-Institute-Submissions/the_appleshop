@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="display">
-    <form action="{% url 'ext_search' %}" method="GET">
+    <form action="{% url 'search' %}" method="GET">
         <input type="text" name="q">
         <input type="text" name="searchterm" value="{{searchterm}}" hidden>
 
@@ -21,7 +21,7 @@
 {% if products %}
 
 <p>Filter</p>
-<form action="{% url 'ext_search' %}" method="GET">
+<form action="{% url 'search' %}" method="GET">
     <select name="" id="">
         <option value="date">Order by date</option>
         <option value="viewcount">Order by view count</option>
