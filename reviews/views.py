@@ -5,7 +5,7 @@ from products.models import Product
 from .forms import ReviewForm
 from django.utils import timezone
 from django.contrib import messages
-
+from products.views import get_user_purchases
 
 def get_reviews(request):
     """
@@ -37,21 +37,23 @@ def create_review(request, pk):
     is null or not
     """
     product=Product.objects.get(pk=pk)
-    review = Review(author=request.user, product=product)
+    purchased_products = get_user_purchases(request.user)
+    if request.user.is_authenticated and product.name in purchased_products:
+        review = Review(author=request.user, product=product)
+        if request.method == "POST":
+            form = ReviewForm(request.POST, request.FILES, instance=review)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.author.id=request.user.id
+                review.product.pk=pk
+                review.save()
+                return redirect(review_detail, review.pk)
+        else:
+            form = ReviewForm(instance=review)
 
-    if request.method == "POST":
-        form = ReviewForm(request.POST, request.FILES, instance=review)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.author.id=request.user.id
-            review.product.pk=pk
-            review.save()
-            return redirect(review_detail, review.pk)
+        return render(request, 'editform.html', {'form': form})
     else:
-        form = ReviewForm(instance=review)
-
-    return render(request, 'editform.html', {'form': form})
-
+        return redirect(reverse('get_reviews'))
 
 
 def edit_review(request, pk):
@@ -61,16 +63,20 @@ def edit_review(request, pk):
     is null or not
     """
     review = get_object_or_404(Review, pk=pk) if pk else None
-    if request.method == "POST":
-        form = ReviewForm(request.POST, request.FILES, instance=review)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.save()
-            return redirect(review_detail, review.pk)
-    else:
-        form = ReviewForm(instance=review)
+    if request.user.is_authenticated and review.author.id == request.user.id:
+        if request.method == "POST":
+            form = ReviewForm(request.POST, request.FILES, instance=review)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.save()
+                return redirect(review_detail, review.pk)
+        else:
+            form = ReviewForm(instance=review)
 
-    return render(request, 'editform.html', {'form': form})
+        return render(request, 'editform.html', {'form': form})
+
+    else:
+        return redirect(reverse('get_reviews'))
 
 
 def delete_review(request, pk):
@@ -78,6 +84,10 @@ def delete_review(request, pk):
     View for deleting a review, requested by author
     """
     review = get_object_or_404(Review, pk=pk)
-    review.delete()
-    messages.success(request, "Review has been deleted")
-    return redirect(reverse('get_reviews'))
+    if request.user.is_authenticated and review.author.id == request.user.id:
+        if request.method=="POST":
+            review.delete()
+            messages.success(request, "Review has been deleted")
+            return redirect(reverse('get_reviews'))
+    else:
+        return redirect(reverse('get_reviews'))
