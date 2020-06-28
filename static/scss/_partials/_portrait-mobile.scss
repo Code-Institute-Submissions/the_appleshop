@@ -101,4 +101,27 @@
     #brandicon {
         color: rgb(182, 29, 24);
     }
+
+    .products-icon {
+        margin-bottom: 5px;
+    }
+
+    .order_container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .orderline_header, .orderline_value {
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .desktop-navbar {
+        display: none;
+    }
+
+
 }

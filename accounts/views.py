@@ -3,7 +3,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm, UserAddressForm, UserAddress
-
+from checkout.models import OrderLineItem
 
 @login_required
 def logout(request):
@@ -65,9 +65,13 @@ def user_profile(request):
     else:
         try:
             user_address_current = UserAddress.objects.get(user=request.user.id)
-
         except:
             user_address_current = UserAddress.objects.create(user=request.user)
+
+        try:
+            user_orders = OrderLineItem.objects.filter(user=request.user.id)
+        except:
+            user_orders = None
 
         user_addressform=UserAddressForm(instance=user_address_current)
 
@@ -79,4 +83,4 @@ def user_profile(request):
                 user_address_new.save()
             messages.success(request, "Shipping Address updated.")
 
-    return render(request, 'profile.html', {'user_addressform': user_addressform})
+    return render(request, 'profile.html', {'user_addressform': user_addressform, 'user_orders': user_orders})

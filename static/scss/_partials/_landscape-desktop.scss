@@ -1,4 +1,4 @@
-@media screen and (min-height: 415px) and (min-width: 600px) and (max-width: 3840px) and (orientation: landscape) {
+@media screen and (min-height: 415px) and (min-width: 510px) and (max-width: 3840px) and (orientation: landscape) {
     body {
         font-family: Arial;
         padding-top: 100px;
@@ -80,5 +80,23 @@
 
     .active-app {
         color: rgba(255, 0, 0, 0.5);
+    }
+
+    .order_container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+    .orderline_header, .orderline_value {
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobile-navbar {
+        display: none;
     }
 }

@@ -12,7 +12,7 @@ def add_to_cart(request, id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
     if id in cart:
-        cart[id] = int(cart[id]) + quantity 
+        cart[id] = int(cart[id]) + quantity
     else:
         cart[id] = quantity
     request.session['cart'] = cart
@@ -22,9 +22,9 @@ def add_to_cart(request, id):
         except:
             name = str(request.user)+"'s cart"
             user_cart = Cart(user=request.user, name=name, product_list="")
-        user_cart.product_list = str(cart) 
+        user_cart.product_list = str(cart)
         user_cart.save()
-    return redirect(reverse('index'))
+    return redirect(reverse('products'))
 
 
 def adjust_cart(request, id):
@@ -45,6 +45,6 @@ def adjust_cart(request, id):
         except:
             name = str(request.user)+"'s cart"
             user_cart = Cart(user=request.user, name=name, product_list="")
-        user_cart.product_list = str(cart) 
+        user_cart.product_list = str(cart)
         user_cart.save()
     return redirect(reverse('view_cart'))

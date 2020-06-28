@@ -66,7 +66,7 @@
     <p id="t13" class="pln"><span class="n"><a href="#t13">13</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t14" class="run"><span class="n"><a href="#t14">14</a></span><span class="t">    <span class="nam">reviews</span> <span class="op">=</span> <span class="nam">Review</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">filter</span><span class="op">(</span><span class="nam">created_date__lte</span><span class="op">=</span><span class="nam">timezone</span><span class="op">.</span><span class="nam">now</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t15" class="pln"><span class="n"><a href="#t15">15</a></span><span class="t">        <span class="op">)</span><span class="op">.</span><span class="nam">order_by</span><span class="op">(</span><span class="str">'-created_date'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t16" class="run"><span class="n"><a href="#t16">16</a></span><span class="t">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">"reviews.html"</span><span class="op">,</span> <span class="op">{</span><span class="str">'reviews'</span><span class="op">:</span> <span class="nam">reviews</span><span class="op">}</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t16" class="run"><span class="n"><a href="#t16">16</a></span><span class="t">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">"reviews.html"</span><span class="op">,</span> <span class="op">{</span><span class="str">'reviews'</span><span class="op">:</span> <span class="nam">reviews</span><span class="op">,</span> <span class="str">"testvalue"</span><span class="op">:</span> <span class="num">99</span><span class="op">}</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t17" class="pln"><span class="n"><a href="#t17">17</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t18" class="pln"><span class="n"><a href="#t18">18</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t19" class="run"><span class="n"><a href="#t19">19</a></span><span class="t"><span class="key">def</span> <span class="nam">review_detail</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="nam">pk</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -150,7 +150,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-28 04:29
+            created at 2020-06-28 19:56
         </p>
     </div>
 </div>
