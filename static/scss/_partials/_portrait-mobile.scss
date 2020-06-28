@@ -1,11 +1,10 @@
-@media screen and (max-width: 500px) and (max-height: 823px) and (orientation: portrait) {
+@media screen and (max-width: 510px) and (max-height: 823px) and (orientation: portrait) {
 
     // max-width: 414px!!
     body {
         font-family: Arial;
         padding-top: 100px;
     }
-
     footer {
         margin-top: 40px;
         padding-top: 20px;
@@ -76,7 +75,6 @@
         display: flex;
         flex-wrap: wrap;
         margin: 7.5px 0;
-
     }
 
     #bottombar .quicklinks {
@@ -89,5 +87,15 @@
 
     .active-app {
         color: rgba(255, 0, 0, 0.5);
+    }
+
+    #deletePopup {
+        //position: absolute;
+        opacity: 0.0;
+        //transform: translateX(-100vw);
+        border: 2px white;
+        border-radius: 10px;
+        flex-wrap: wrap;
+        top: 44vw;
     }
 }

@@ -18,7 +18,7 @@ class TestAccountsRegistrationView(TestCase):
         new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')
         self.client.login(username='testuser', password='password')
         page = self.client.get("/accounts/register/", content_type="html/text", follow=True)
-        self.assertTemplateUsed(page, "products.html")
+        self.assertTemplateUsed(page, "bestsellers.html")
 
     def test_unique_email_address_in_registration_form(self):
         new_user = User.objects.create_user('testuser', 'testuser@domain.com', 'password')

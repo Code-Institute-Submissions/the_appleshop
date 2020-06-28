@@ -86,7 +86,7 @@ def delete_review(request, pk):
     """
     review = get_object_or_404(Review, pk=pk)
     if request.user.is_authenticated and review.author.id == request.user.id:
-        if request.method=="POST":
+        if request.method=="GET":
             review.delete()
             messages.success(request, "Review has been deleted")
             return redirect(reverse('get_reviews'))

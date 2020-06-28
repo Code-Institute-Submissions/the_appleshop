@@ -147,7 +147,7 @@ class TestReviewViews(TestCase):
         new_review.save()
         check_review = Review.objects.get(pk=1)
         self.assertEqual(str(check_review), "review name")
-        self.client.post('/reviews/1/delete/')
+        self.client.get('/reviews/1/delete/')
         reviews = Review.objects.all()
         self.assertEqual(list(reviews), [])
 

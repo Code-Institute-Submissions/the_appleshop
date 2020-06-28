@@ -92,9 +92,9 @@
                     {% endif %}
                     <li>
                         {% if "cart" in app_path %}
-                        <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart active-app"></i>
+                        <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart active-app"></i> Cart
                             {% else %}
-                            <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i>
+                            <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart
                                 {% endif %}
                                 {%if product_count > 0 %}
                                 <label class="badge badge-warning">{{ product_count }}</label>

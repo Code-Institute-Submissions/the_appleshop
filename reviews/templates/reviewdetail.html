@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
+{% block head_js %}
+<script src="{% static 'js/appleshop.js' %}"></script>
+{% endblock head_js %}
 {% block content %}
     <div class="row">
         <div class="col-md-2 col-sm-3 text-center">
@@ -34,15 +37,4 @@
             </div>
         </div>
     </div>
-
-    {% if user.is_authenticated and review.author.id == user.id %}
-    <div id="deletePopup">
-        <div id="deletePopupMessage">Are you sure to delete this review ?</div>
-        <form id="deletePopupForm" method="POST" action="{% url 'delete_review' review.id %}" enctype="multipart/form-data">
-            {% csrf_token %}
-        </form>
-        <button type="submit" class="btn btn-info" onclick="sendDeleteForm()">Delete</button><button type="cancel" id="deleteReviewPopupCancelBtn" class="btn waves-effect waves-light" onclick="cancelDeleteReview()">
-            Cancel</button>
-    </div>
-    {% endif %}
 {% endblock %}

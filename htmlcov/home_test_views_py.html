@@ -58,13 +58,13 @@
     <p id="t5" class="run"><span class="n"><a href="#t5">5</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_index_page_response</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t6" class="run"><span class="n"><a href="#t6">6</a></span><span class="t">        <span class="nam">page</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">client</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/"</span><span class="op">,</span> <span class="nam">content_type</span><span class="op">=</span><span class="str">"html/text"</span><span class="op">,</span> <span class="nam">follow</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t7" class="run"><span class="n"><a href="#t7">7</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">page</span><span class="op">.</span><span class="nam">status_code</span><span class="op">,</span> <span class="num">200</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t8" class="run"><span class="n"><a href="#t8">8</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertTemplateUsed</span><span class="op">(</span><span class="nam">page</span><span class="op">,</span> <span class="str">"products.html"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t8" class="run"><span class="n"><a href="#t8">8</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertTemplateUsed</span><span class="op">(</span><span class="nam">page</span><span class="op">,</span> <span class="str">"bestsellers.html"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-15 19:08
+            created at 2020-06-28 04:29
         </p>
     </div>
 </div>
