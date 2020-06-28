@@ -13,7 +13,7 @@ def get_reviews(request):
     """
     reviews = Review.objects.filter(created_date__lte=timezone.now()
         ).order_by('-created_date')
-    return render(request, "reviews.html", {'reviews': reviews})
+    return render(request, "reviews.html", {'reviews': reviews, "testvalue": 99})
 
 
 def review_detail(request, pk):
