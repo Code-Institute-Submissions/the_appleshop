@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
+{% block head_js %}
+<script src="">
+
+</script>
+{% endblock head_js %}
+
 {% block content %}
 <div class="row row-flex">
     {% for item in cart_items %}
@@ -40,7 +46,7 @@
     <p>{{shippingfee}} EUR Shipping</p>
     {% endif %}
     <p>Total</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+    <p id="totalamount"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
     <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign"
             aria-hidden="true"></span>Checkout</a>
     {% else %}

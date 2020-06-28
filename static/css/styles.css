@@ -82,13 +82,17 @@
   .active-app {
     color: rgba(255, 0, 0, 0.5);
   }
-  #deletePopup {
+  #freeShippingPopup {
+    position: absolute;
     opacity: 0.0;
-    border: 2px white;
-    border-radius: 10px;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    top: 44vw;
+    z-index: -1;
+    -webkit-transform: translateZ(-10px);
+            transform: translateZ(-10px);
+    -webkit-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+  }
+  #brandicon {
+    color: #b61d18;
   }
 }
 

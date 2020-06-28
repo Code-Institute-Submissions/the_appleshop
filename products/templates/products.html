@@ -12,8 +12,6 @@
         </form>
     </div>
     {% if products %}
-
-
     {% for product in products %}
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
         <div class="panel-body">
@@ -21,7 +19,7 @@
                 style="width:150px;height:150px;">
             <!--
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
-            <h3><a id="FFF" href="{% url 'product_detail' product.id %}" onclick=setjumper(this)>{{product.name}}</a>
+            <h3><a href="{% url 'product_detail' product.id %}">{{product.name}}</a>
             </h3>
             {% if product.id in wishlist %}
             <form id="addwishlist{{product.id}}" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
@@ -32,8 +30,7 @@
                 </span>
             </form>
             {% else %}
-            <form id="addwishlist{{product.id}}" method="POST" action="{% url 'add_to_wishlist' product.id %}"
-                onclick=setjumper(this)>
+            <form id="addwishlist{{product.id}}" method="POST" action="{% url 'add_to_wishlist' product.id %}">
                 {% csrf_token %}
                 <span class="input-group-btn">
                     <button class="btn btn-success" type="submit">Add</button>
@@ -42,8 +39,7 @@
             {% endif %}
             <p class="product-description">{{ product.description }}</p>
             <p>{{ product.price }}</p>
-            <form id="addcart{{product.id}}" method="POST" action="{% url 'add_to_cart' product.id %}"
-                onclick=setjumper(this)>
+            <form id="addcart{{product.id}}" method="POST" action="{% url 'add_to_cart' product.id %}">
                 {% csrf_token %}
                 <div class="input-group">
                     <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">

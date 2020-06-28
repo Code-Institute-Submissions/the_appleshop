@@ -35,7 +35,12 @@
             {{ review.product.name }}</a>
         {% if user.is_authenticated and review.author.id == user.id %}
         <a href="{% url 'edit_review' review.id %}" class="btn btn-default">Edit Review</a>
-        <a href="{% url 'delete_review' review.id %}" class="btn btn-default">Delete Review</a>
+        <div class="btn btn-success" onclick="showDeletePopup()">DELETE</div>
+        <div id="freeShippingPopup">
+            <p>Delete?</p>
+            <a href="{% url 'delete_review' review.id %}" class="btn btn-default">Delete Review</a>
+            <div class="btn btn-success" onclick="closeDeletePopup()">Cancel</div>
+        </div>
         {% endif %}
     </div>
 </div>
@@ -43,4 +48,5 @@
 {% else %}
 <p>No results have been found.</p>
 {% endif %}
+
 {% endblock %}
