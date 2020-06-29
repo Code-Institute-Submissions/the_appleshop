@@ -14,16 +14,49 @@ The Django admin panel can be accessed with following credentials.
 
 # Applications screen
 
+# Table of Contents
+
+
+[User stories / Requirements] (user_stories)
+
+[Shop features] (shop_features)
+
+[APPs in this project] (used_apps)
+
+[Models and relational database schema] (models_and_schema)
+
+[Technologies used in this project] (technologies)
+
+[Wireframes / Mockups] (wireframes)
+
+[Cloning the project for deployment] (cloning)
+
+[AWS S3 bucket creation] (s3_bucket_creation)
+
+[Deployment on Heroku] (heroku_deploymet)
+
+[Future features to implement] (future_features)
+
+[Current issues] (current_issues)
+
+[Acknowledgements and recognition] (acknowledgements)
+
+[Compliance reports] (reports)
+
+[Performed Testing] (testing)
+
+[Manual Testing] (manual_testing)
+
 
 
 # User stories / Requirements
 
 * As a user I would like to have an overview of products this shop has to offer.
-*  I want to be able to register an account and to logon on from desktop or mobile device, so I can store my favourites list of products and shopping cart for later review.
-*  User preferences should list my user details and order history, User management
-*  It should provide the possibility to review products I have purchased.
-*  A search function should present products based on entered search term.
-*  Should support credit cards for payment option.
+*  As a user, I want to be able to register an account and to logon on from desktop or mobile device, so I can store my favourites list of products and shopping cart for later review.
+*  As a user, I expect that User preferences should list my user details and order history, User management
+*  As a user, I would like to have the possibility to review products I have purchased.
+*  As a user, I want to search for products based on entered search term.
+*  As a user, I want to be able to pay by credit card.
 
 
 
@@ -70,6 +103,9 @@ I have added in total 4 models and one form as listed below.
 
 ![User model](static/data/mockups/screens/User-model.jpg)
 
+
+## Relational database schema
+
 ![Relational database schema](static/data/mockups/screens/Relational-database-schema.jpg)
 
 
@@ -94,7 +130,7 @@ I have added in total 4 models and one form as listed below.
 
 
 
-# Wireframes
+# Wireframes / Mockups
 
 * The wireframes can be accessed in this folder:
 
@@ -102,7 +138,7 @@ I have added in total 4 models and one form as listed below.
 
 
 
-# Cloning the project
+# Cloning the project for deployment
 
 * Create a project in IDE and clone it by executing the bash command
 
@@ -131,18 +167,6 @@ os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "PROVIDED BY AWS")
 
 !! Please add the env.py file to .gitignore file !!
 
-* Create a repository on Github
-
-
-
-
-git add .
-git commit -m 'my commit'
-git push -u origin master
-
-
-
-# Local Deployment
 
 To run this project locally, the following steps need to be done.
 
@@ -293,6 +317,21 @@ python3 manage.py runserver
 
 # Deployment on Heroku
 
+* Create a repository on Github
+
+* Deploying to the github branch is done by adding all files to stage by
+
+git add .
+
+* providing a commit message
+
+git commit -m 'my commit'
+
+* and push content to server
+
+git push -u origin master
+
+
 * In order to deploy this project to the web, please create an account at https://heroku.com/ and create an app with a unique name, region Europe. Write down the provided url for later call to run the project.
 
 * Please setup a Dyno for Postgres DB in the dashboard to setup postgres DATABASE_URL
@@ -345,7 +384,8 @@ graphical content and should be updated with future features to implement.
 
 
 
-# Acknowledgement
+# Acknowledgements and recognition
+
 
 * Slack:
 
@@ -373,7 +413,7 @@ PEP8 PENDING
 
 
 
-# Testing
+# Performed Testing
 
 * All methods have been tested by using Django Testkit.
 
