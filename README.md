@@ -17,35 +17,35 @@ The Django admin panel can be accessed with following credentials.
 # Table of Contents
 
 
-[User stories / Requirements](#stories)
+1. [User stories / Requirements](#stories)
 
-[Shop features](#features)
+2. [Shop features](#features)
 
-[APPs in this project](#apps)
+3. [APPs in this project](#apps)
 
-[Models and relational database schema](#models)
+4. [Models and relational database schema](#models)
 
-[Technologies used in this project](#technologies)
+5. [Technologies used in this project](#technologies)
 
-[Wireframes / Mockups](#wireframes)
+6. [Wireframes / Mockups](#wireframes)
 
-[Cloning the project for deployment](#cloning)
+7. [Cloning the project for deployment](#cloning)
 
-[AWS S3 bucket creation](#s3-bucket)
+8. [AWS S3 bucket creation](#s3-bucket)
 
-[Deployment on Heroku](#heroku-deploymet)
+9. [Deployment on Heroku](#heroku-deploymet)
 
-[Future features to implement](#future-features)
+10. [Future features to implement](#future-features)
 
-[Current issues](#current-issues)
+11. [Current issues](#current-issues)
 
-[Acknowledgements and recognition](#acknowledgements)
+12. [Acknowledgements and recognition](#acknowledgements)
 
-[Compliance reports](#reports)
+13. [Compliance reports](#reports)
 
-[Performed Testing](#testing)
+14. [Performed Testing](#testing)
 
-[Manual Testing](#manual-testing)
+15. [Manual Testing](#manual-testing)
 
 
 
