@@ -5,13 +5,13 @@ from django.utils import timezone
 
 
 class Review(models.Model):
-
+    RATING_CHOICES = [(i, i) for i in range(1, 6)]
     title = models.CharField(max_length=50, default='', blank=False)
     product = models.ForeignKey(Product)
-    name = models.CharField(max_length=254, default='', blank=False)
+    name = models.CharField(max_length=100, default='', blank=False)
     image = models.ImageField(upload_to='images', blank=True, null=True)
     author = models.ForeignKey(User)
-    rating = models.IntegerField(default=0, blank=False)
+    rating = models.IntegerField(choices=RATING_CHOICES, blank=False)
     comment = models.TextField(blank=False)
     view_count = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now_add=True)

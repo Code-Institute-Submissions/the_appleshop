@@ -5,13 +5,8 @@
 {% endblock head_js %}
 {% block content %}
 <div class="row">
-    <div class="col-md-2 col-sm-3 text-center">
-        <a class="story-img" href="#">
-            <img src="/media/img/profile.jpg" class="img-circle">
-        </a>
-    </div>
     <div class="col-sm-10 col-md-9">
-        <h3>{{ review.title }} for {{ review.product.name }}</h3>
+        <h3>{{ review.title }}</h3>
         {% if review.image %}
         <img class="img-blogpost" src="/media/{{ review.image }}">
         {% endif %}
@@ -22,9 +17,8 @@
                 <p><span class="boldtext">Published by:</span> {{ review.author.name }} </p>
                 <p><span class="boldtext">Published on:</span> {{ review.created_date }} </p>
                 <p><span class="boldtext">Views:</span> {{review.view_count}}</p>
-                <p><span class="boldtext">Rating:</span>
-                    {{review.rating }}
-                </p>
+                <p><span class="boldtext">Rating:</span>{{review.rating }}</p>
+                <a href="{% url 'get_reviews' %}" class="btn btn-default">Back to reviews</a>
                 <a href="{% url 'product_detail' review.product.id %}" class="btn btn-default">Back to
                     {{ review.product.name }}</a>
                 {% if user.is_authenticated and review.author.id == user.id %}
@@ -35,8 +29,6 @@
                     <a href="{% url 'delete_review' review.id %}" class="btn btn-default">Delete Review</a>
                     <div class="btn btn-success" onclick="closeDeletePopup()">Cancel</div>
                 </div>
-                <a href="{% url 'delete_review' review.id %}" class="btn btn-default"
-                    onclick="showdeleteReviewPopup()">Delete Review</a>
                 {% endif %}
                 <hr>
             </div>
