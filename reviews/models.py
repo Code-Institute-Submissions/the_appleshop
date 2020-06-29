@@ -8,7 +8,7 @@ class Review(models.Model):
     RATING_CHOICES = [(i, i) for i in range(1, 6)]
     title = models.CharField(max_length=50, default='', blank=False)
     product = models.ForeignKey(Product)
-    name = models.CharField(max_length=100, default='', blank=False)
+    name = models.CharField(max_length=100, default='', blank=True)
     image = models.ImageField(upload_to='images', blank=True, null=True)
     author = models.ForeignKey(User)
     rating = models.IntegerField(choices=RATING_CHOICES, blank=False)

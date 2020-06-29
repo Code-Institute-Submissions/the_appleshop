@@ -395,6 +395,10 @@ The slack community helped a lot to know where to start troubleshooting. The sea
 
 This marvellous site was used to point me into the right direction when I didn't find a way to get rid of bugs.
 
+* Texts and data for the apples have been taken from
+
+https://en.wikipedia.org/wiki/List_of_apple_cultivars
+
 
 ### Beside from above mentioned acknowledgements NO other code has been copied.
 
