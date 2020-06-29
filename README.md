@@ -17,11 +17,11 @@ The Django admin panel can be accessed with following credentials.
 # Table of Contents
 
 
-[User stories / Requirements] (user_stories)
+[User stories / Requirements](user_stories)
 
-[Shop features] (shop_features)
+[Shop features](shop_features)
 
-[APPs in this project] (used_apps)
+[APPs in this project](used_apps)
 
 [Models and relational database schema] (models_and_schema)
 
