@@ -217,7 +217,7 @@
         -ms-flex-align: center;
             align-items: center;
   }
-  .mobile-navbar {
+  .mobile-navbar, .navbar-right {
     display: none;
   }
 }
