@@ -17,39 +17,41 @@ The Django admin panel can be accessed with following credentials.
 # Table of Contents
 
 
-1. [User stories / Requirements](#stories)
+1. [User stories](#user-stories)
 
-2. [Shop features](#features)
+2. [Shop features](#shop-features)
 
-3. [APPs in this project](#apps)
+3. [Implemented Apps](#implemented-apps)
 
-4. [Models and relational database schema](#models)
+4. [Models](#models)
 
-5. [Technologies used in this project](#technologies)
+5. [Database schema](#database-schema)
 
-6. [Wireframes / Mockups](#wireframes)
+6. [Technologies used](#technologies-used)
 
-7. [Cloning the project for deployment](#cloning)
+7. [Wireframes](#wireframes)
 
-8. [AWS S3 bucket creation](#s3-bucket)
+8. [Cloning project](#cloning-project)
 
-9. [Deployment on Heroku](#heroku-deploymet)
+9. [S3 bucket creation](#s3-bucket-creation)
 
-10. [Future features to implement](#future-features)
+10. [Deployment on Heroku](#deployment-on-heroku)
 
-11. [Current issues](#current-issues)
+11. [Future features to implement](#future-features-to-implement)
 
-12. [Acknowledgements and recognition](#acknowledgements)
+12. [Current issues](#current-issues)
 
-13. [Compliance reports](#reports)
+13. [Acknowledgements](#acknowledgements)
 
-14. [Performed Testing](#testing)
+14. [Compliance reports](#compliance-reports)
 
-15. [Manual Testing](#manual-testing)
+15. [Automated Testing](#automated-testing)
+
+16. [Manual Testing](#manual-testing)
 
 
 
-# User stories / Requirements
+# User stories
 
 * As a user I would like to have an overview of products this shop has to offer.
 *  As a user, I want to be able to register an account and to logon on from desktop or mobile device, so I can store my favourites list of products and shopping cart for later review.
@@ -73,7 +75,7 @@ The Django admin panel can be accessed with following credentials.
 
 
 
-# APPs in this project
+# Implemented Apps
 
 The Apps 'accounts', 'cart', 'checkout', 'products' and 'search' have been taken from course program.
 I have added in total 4 models and one form as listed below.
@@ -85,7 +87,7 @@ I have added in total 4 models and one form as listed below.
 
 
 
-# Models and relational database schema
+# Models
 
 ![Product model](static/data/mockups/screens/Product-model.jpg)
 
@@ -104,13 +106,13 @@ I have added in total 4 models and one form as listed below.
 ![User model](static/data/mockups/screens/User-model.jpg)
 
 
-## Relational database schema
+# Database schema
 
 ![Relational database schema](static/data/mockups/screens/Relational-database-schema.jpg)
 
 
 
-# Technologies used in this project
+# Technologies used
 
 * HTML for browser presentation, https://www.w3.org/html/
 * CSS with SCSS and BOOTSTRAP for styling the frontend.
@@ -130,17 +132,17 @@ I have added in total 4 models and one form as listed below.
 
 
 
-# Wireframes / Mockups
+# Wireframes
 
 * The wireframes can be accessed in this folder:
 
-(https://github.com/poldi2018/the_appleshop/tree/master/static/data/mockups)
+https://github.com/poldi2018/the_appleshop/tree/master/static/data/mockups
 
 
 
-# Cloning the project for deployment
+# Cloning project
 
-* Create a project in IDE and clone it by executing the bash command
+* Create a project in your IDE and clone it into that workplace folder by executing the bash command
 
 git clone https://github.com/poldi2018/the_appleshop.git
 
@@ -148,7 +150,9 @@ git clone https://github.com/poldi2018/the_appleshop.git
 * The optional keys TESTING is only needed for testing to force Django to use sqlite. USELOCALSTATIC is used to work with local static files instead of AWS.
 
 
-* The env.py file should only contain the environment variable, such as:
+* The env.py file should only contain the environment variable and imports, such as:
+
+Begin file:
 
 import os
 
@@ -164,6 +168,8 @@ os.environ.setdefault("STRIPE_SECRET", "YOUR STRIPE API KEY")
 os.environ.setdefault("AWS_ACCESS_KEY_ID", "PROVIDED BY AWS")
 os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "PROVIDED BY AWS")
 
+
+End file.
 
 !! Please add the env.py file to .gitignore file !!
 
@@ -198,8 +204,15 @@ python3 manage.py migrate
 
 python3 manage.py createsuperuser
 
+* In case of switching from Sqlite to Postgres database the commands
 
-# AWS S3 bucket creation
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser
+
+* needs to be executed again to feed the new database with model and user information.
+
+# S3 bucket creation
 
 In S3 section:
 
@@ -367,13 +380,6 @@ https://YOUR_HEROKU_APP_NAME.herokuapp.com
 
 
 
-# Current issues
-
-Technical issues are not present so far. But this shop site needs to have some better
-graphical content and should be updated with future features to implement.
-
-
-
 # Future features to implement
 
 * Pagination to limit returned documents per query.
@@ -384,7 +390,14 @@ graphical content and should be updated with future features to implement.
 
 
 
-# Acknowledgements and recognition
+# Current issues
+
+Technical issues are not present so far. But this shop site needs to have some better
+graphical content and should be updated with future features to implement.
+
+
+
+# Acknowledgements
 
 
 * Slack:
@@ -395,7 +408,7 @@ The slack community helped a lot to know where to start troubleshooting. The sea
 
 This marvellous site was used to point me into the right direction when I didn't find a way to get rid of bugs.
 
-* Texts and data for the apples have been taken from
+* Texts and data about the apples have been taken from
 
 https://en.wikipedia.org/wiki/List_of_apple_cultivars
 
@@ -410,14 +423,9 @@ https://en.wikipedia.org/wiki/List_of_apple_cultivars
 
 (https://github.com/poldi2018/the_appleshop/tree/master/static/data/reports)
 
-CSS PENDING
-HTML PENDING
-JShint PENDING
-PEP8 PENDING
 
 
-
-# Performed Testing
+# Automatic Testing
 
 * All methods have been tested by using Django Testkit.
 
@@ -429,12 +437,12 @@ PEP8 PENDING
 (https://github.com/poldi2018/the_appleshop/tree/master/htmlcov)
 
 
-* Testing with Travis CI has passed :)
+* Testing with Travis CI has passed.
 
 ![Travis CI confirmation](static/data/mockups/screens/travis-ms5.jpg)
 
 
-## Manual Testing
+# Manual Testing
 
 * All the functionality was also tested by hand
 
