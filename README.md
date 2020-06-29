@@ -131,11 +131,48 @@ os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "PROVIDED BY AWS")
 
 !! Please add the env.py file to .gitignore file !!
 
+* Create a repository on Github
+
+
+
+
+git add .
+git commit -m 'my commit'
+git push -u origin master
+
 
 
 # Local Deployment
 
-To run this project locally, the following steps need to be done:
+To run this project locally, the following steps need to be done.
+
+
+* For the installation of resources from requirements.txt it is recommended to install a virtual environment first. I used 'virtualenvwrapper' which can be installed by using
+
+sudo pip install virtualenvwrapper
+
+* After installation, please create an environment with e.g. name of 'shop_env'. Also the python version needs to be set by. The whole command should look like this:
+
+
+mkvirtualenv -p python3.8 shop_env
+
+
+* Installation of resources from requirements.txt is achieved by using
+
+pip install -r requirements.txt
+
+* Loading the model definitions into the database is accomplished by using the following two commands
+
+python3 manage.py makemigrations
+
+* and
+
+python3 manage.py migrate
+
+
+* As the last step a superuser needs to be created in database:
+
+python3 manage.py createsuperuser
 
 
 # AWS S3 bucket creation
@@ -249,10 +286,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 
+* Finally, the project can be run by executing
+
+python3 manage.py runserver
+
 
 # Deployment on Heroku
 
-In order to deploy this project to the web, please create an account at https://heroku.com/ and create an app with a unique name, region Europe. Write down the provided url for later call to run the project.
+* In order to deploy this project to the web, please create an account at https://heroku.com/ and create an app with a unique name, region Europe. Write down the provided url for later call to run the project.
 
 * Please setup a Dyno for Postgres DB in the dashboard to setup postgres DATABASE_URL
 
@@ -265,6 +306,25 @@ IP = 0.0.0.0
 PORT = 5000
 AWS_ACCESS_KEY_ID  Provided after S3 bucket creation
 AWS_SECRET_ACCESS_KEY Provided after S3 bucket creation
+DATABASE_URL (already present after Dyno installation)
+
+* In case the required Profile is not yet created, it is necessary to have this in place before deploying to Heroku.
+
+* The file can be created by executing
+
+echo web: gunicorn appleshop.wsgi:application > Procfile
+
+* Set the Heroku remote branch
+
+heroku git:remote -a YOUR_HEROKU_APP_NAME
+
+* Push the repository content to Heroku:
+
+git push -u heroku master
+
+* The project should be accessible via
+
+https://YOUR_HEROKU_APP_NAME.herokuapp.com
 
 
 
