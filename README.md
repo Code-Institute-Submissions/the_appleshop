@@ -1,7 +1,7 @@
 # Fullstack Django Milestone Project: The appleshop
 
 
-LIVELINK: https://the-appleshop.herokuapp.com/products/
+LIVELINK: https://the-appleshop.herokuapp.com/products/ <br>
 GITHUB: https://github.com/poldi2018/the_appleshop
 
 The Django admin panel can be accessed with following credentials.
@@ -40,7 +40,7 @@ The Django admin panel can be accessed with following credentials.
 
 
 
-# APPS in this project
+# APPs in this project
 
 The Apps 'accounts', 'cart', 'checkout', 'products' and 'search' have been taken from course program.
 I have added in total 4 models and one form as listed below.
