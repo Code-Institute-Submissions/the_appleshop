@@ -133,7 +133,7 @@
     width: 30%;
   }
   .quickstats-value {
-    width: 70%;
+    width: 68%;
   }
   .product-stats {
     width: 50%;
@@ -150,9 +150,54 @@
     position: absolute;
     left: 88.7%;
   }
-  .addWishBtn, .removeWishBtn {
+  .addWishBtn,
+  .removeWishBtn {
     border: none;
     background-color: transparent;
+  }
+  .reviewsWrapper {
+    padding-bottom: 20vw;
+    background-color: #9e988fcb;
+    min-height: 82vh;
+  }
+  .review-quickstats {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    position: absolute;
+    width: 50%;
+    top: 22vw;
+    left: 52vw;
+  }
+  #review-btn-bar {
+    width: 100%;
+  }
+  #back-to-product-btn,
+  #edit-review-btn,
+  #review-del-req-btn {
+    width: 28%;
+    font-family: "Dosis", sans-serif;
+    font-size: 3vw;
+    color: white;
+  }
+  #back-to-product-btn {
+    background-color: #89ac89;
+    margin-right: 2px;
+  }
+  #edit-review-btn {
+    background-color: #8d90ad;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  #review-del-req-btn {
+    background-color: #b11919;
+    margin-left: 2px;
+  }
+  .review-headline {
+    font-family: "Dosis", sans-serif;
+    font-size: 5.5vw;
   }
   .wishlistWrapper {
     padding-bottom: 25vw;
@@ -218,8 +263,13 @@
   .profileWrapper {
     padding-bottom: 20vw;
   }
-  .form-control, .profile-tabs,
-  .orderline_header, .orderline_value,
+  .nav-tabs {
+    margin-top: 3vw;
+  }
+  .form-control,
+  .profile-tabs,
+  .orderline_header,
+  .orderline_value,
   .updateAddressBtn {
     font-family: "Dosis", sans-serif;
     font-size: 3.5vw;
@@ -272,6 +322,25 @@
   }
   .checkout-summary-wrapper {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .checkout-summary {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 60%;
   }
   .empty-cart-Wrapper {
     display: -webkit-box;
@@ -285,6 +354,16 @@
   }
   .no-cart-items {
     width: 80%;
+  }
+  .shipping-fee {
+    width: 100%;
+  }
+  #totalamount {
+    width: 100%;
+  }
+  .glyphicon-euro {
+    margin-left: 5px;
+    margin-right: 5px;
   }
   #confirmDeletePopup {
     background-color: beige;
