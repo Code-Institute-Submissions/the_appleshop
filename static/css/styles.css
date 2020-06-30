@@ -34,12 +34,14 @@
 
 @media screen and (max-width: 510px) and (max-height: 823px) and (orientation: portrait) {
   body {
-    font-family: Arial;
-    padding-top: 100px;
+    font-family: "Dosis", sans-serif;
+    padding-top: 60px;
+    font-size: 4vw;
   }
   .container > .navbar-header {
     margin-left: 0;
     margin-right: 0;
+    height: 12vw;
   }
   .container {
     padding-left: 0;
@@ -50,6 +52,17 @@
   }
   .navbar-nav {
     margin: 7.5px 0;
+  }
+  #brandicon {
+    color: #b61d18;
+    font-size: 6vw;
+  }
+  .navbar-brand {
+    font-family: "Dosis", sans-serif;
+    font-size: 5vw;
+  }
+  #menubutton {
+    margin-top: 15px;
   }
   .icon-bar {
     background-color: #fff;
@@ -93,6 +106,10 @@
         flex-wrap: wrap;
     margin-top: 30px;
   }
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .panel-default {
     padding: 0 0;
   }
@@ -101,10 +118,27 @@
     border: 1px solid #ddd;
     background-color: cornsilk;
   }
+  .product-quickstats {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    position: absolute;
+    top: 15vw;
+    left: 50vw;
+  }
+  .quickstats-key {
+    width: 26%;
+  }
+  .quickstats-value {
+    width: 70%;
+  }
   .wishform {
     width: 8vw;
     position: absolute;
-    left: 85%;
+    left: 88.7%;
   }
   .addWishBtn {
     border: none;
@@ -125,6 +159,10 @@
   }
   .productcard {
     width: 95vw;
+  }
+  .product-headline {
+    font-family: "Dosis", sans-serif;
+    font-size: 5.5vw;
   }
   #bottombar {
     display: -webkit-box;
@@ -149,9 +187,6 @@
   }
   .active-app {
     color: rgba(255, 0, 0, 0.5);
-  }
-  #brandicon {
-    color: #b61d18;
   }
   .products-icon {
     margin-bottom: 5px;

@@ -3,12 +3,11 @@
     // fontsize definitions
     $delPopupFontSize: 4vw;
 
-
-
     // max-width: 414px!!
     body {
-        font-family: Arial;
-        padding-top: 100px;
+        font-family: $dosisFont;
+        padding-top: 60px;
+        font-size: 4vw;
     }
 
     // footer {
@@ -24,6 +23,7 @@
             left: 0;
             right: 0;
         }
+        height: 12vw;
 
     }
 
@@ -31,7 +31,6 @@
         padding: {
             left: 0;
             right: 0;
-
         }
     }
 
@@ -41,6 +40,21 @@
 
     .navbar-nav {
         margin: 7.5px 0;
+    }
+
+    #brandicon {
+        color: rgb(182, 29, 24);
+        font-size: 6vw;
+    }
+
+    .navbar-brand {
+        font-family: $dosisFont;
+        font-size: 5vw;
+
+    }
+
+    #menubutton {
+        margin-top: 15px;
     }
 
     .icon-bar {
@@ -97,6 +111,14 @@
         margin-top: 30px;
     }
 
+    .row {
+        margin: {
+            left: 0;
+            right: 0;
+        }
+
+    }
+
     .panel-default {
         padding: 0 0;
     }
@@ -107,11 +129,30 @@
         background-color: cornsilk;
     }
 
+    .product-quickstats {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        top: 15vw;
+        left: 50vw;
+    }
+
+    .quickstats-key{
+        width: 26%;
+
+
+    }
+
+    .quickstats-value {
+        width: 70%;
+
+    }
+
     .wishform {
         width: 8vw;
         position: absolute;
-        left: 85%;
-
+        left: 88.7%;
     }
 
     .addWishBtn {
@@ -143,6 +184,11 @@
         width: 95vw;
     }
 
+    .product-headline {
+        font-family: $dosisFont;
+        font-size: 5.5vw;
+    }
+
     // bottom linkbar
 
     #bottombar {
@@ -163,10 +209,6 @@
         color: rgba(255, 0, 0, 0.5);
     }
 
-
-    #brandicon {
-        color: rgb(182, 29, 24);
-    }
 
     .products-icon {
         margin-bottom: 5px;

@@ -9,7 +9,8 @@
         <div class="panel-body">
 
             {% if product.id in wishlist %}
-            <form class="wishform" id="addwishlist{{product.id}}" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
+            <form class="wishform" id="addwishlist{{product.id}}" method="POST"
+                action="{% url 'remove_from_wishlist' product.id %}">
                 {% csrf_token %}
                 <span class="input-group-btn">
                     <input type="text" name="jumper" value="" hidden>
@@ -17,7 +18,8 @@
                 </span>
             </form>
             {% else %}
-            <form class="wishform" id="addwishlist{{product.id}}" method="POST" action="{% url 'add_to_wishlist' product.id %}">
+            <form class="wishform" id="addwishlist{{product.id}}" method="POST"
+                action="{% url 'add_to_wishlist' product.id %}">
                 {% csrf_token %}
                 <span class="input-group-btn">
                     <button class="addWishBtn" type="submit"><i class="fa fa-star stariconNotAdded"></i></button>
@@ -25,21 +27,11 @@
             </form>
             {% endif %}
 
-
             <img src="{{ MEDIA_URL }}{{product.image}}" alt="image of {{product.name}}"
-                style="width:150px;height:150px;">
+                style="width:200px;height:150px;">
             <!--
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
             <h3>{{product.name}}</h3>
-
-            {% if product.name in purchased_products %}
-            <form method="POST" action="{% url 'new_review' product.id %}">
-                {% csrf_token %}
-                <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit">Review!</button>
-                </span>
-            </form>
-            {% endif %}
 
             <p class="product-description">{{ product.description }}</p>
             <p>{{ product.price }}</p>
@@ -64,7 +56,8 @@
                 <div class="input-group">
                     <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit"><i class="fa fa-shopping-cart addcard-icon"></i></button>
+                        <button class="btn btn-success" type="submit"><i
+                                class="fa fa-shopping-cart addcard-icon"></i></button>
                     </span>
                 </div>
             </form>
