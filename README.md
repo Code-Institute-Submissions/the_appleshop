@@ -449,6 +449,9 @@ https://github.com/poldi2018/the_appleshop/tree/master/htmlcov
 
 * All the functionality was also tested by hand
 
+* I used firefox and Chrome
+
+
 
 It took a lot of reading, testing and thinking to go through this course. Sometimes it was hard, but it's beautiful! Thanks so much for the review!
 
