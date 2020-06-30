@@ -151,14 +151,20 @@
     left: 88.7%;
   }
   .addWishBtn,
-  .removeWishBtn {
+  .removeWishBtn, .addReviewBtn {
     border: none;
     background-color: transparent;
   }
   .reviewsWrapper {
+    padding-top: 5vw;
+    padding-bottom: 20vw;
+    background-color: #9e988fcb;
+  }
+  .editReviewWrapper {
     padding-bottom: 20vw;
     background-color: #9e988fcb;
     min-height: 82vh;
+    padding-top: 10vw;
   }
   .review-quickstats {
     display: -webkit-box;
@@ -197,6 +203,15 @@
   }
   .review-headline {
     font-family: "Dosis", sans-serif;
+    font-size: 5.5vw;
+  }
+  .revform {
+    width: 8vw;
+    position: absolute;
+    left: 88.7%;
+    top: 7%;
+  }
+  .addReviewBtn {
     font-size: 5.5vw;
   }
   .wishlistWrapper {

@@ -25,9 +25,6 @@
                 <img src="{{ MEDIA_URL }}{{review.image}}" alt="image of {{review.product.name}} review"
                     style="width:200px;height:150px;">
                 {% endif %}
-
-                <!--
-            <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
                 <p></p>
                 <p class="product-description">{{ review.comment|truncatewords:10 }}</p>
                 <p><span class="boldtext">Published by:</span> {{ review.author }} </p>

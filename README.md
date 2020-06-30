@@ -393,9 +393,9 @@ https://YOUR_HEROKU_APP_NAME.herokuapp.com
 
 # Current issues
 
-Technical issues are not present so far. But this shop site needs to have some better
+I just saw there is no update of review_count when a new review is saved. The counter is still on zero.
+Beside this not working functionality, this shop site needs to have some improvement on
 graphical content and should be updated with future features to implement.
-
 
 
 # Acknowledgements
