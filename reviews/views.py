@@ -7,13 +7,14 @@ from django.utils import timezone
 from django.contrib import messages
 from products.views import get_user_purchases
 
+
 def get_reviews(request):
     """
     Creates view with overview of entered reviews prior to 'now'
     """
-    reviews = Review.objects.filter(created_date__lte=timezone.now()
-        ).order_by('-created_date')
-    return render(request, "reviews.html", {'reviews': reviews, "testvalue": 99})
+    reviews = Review.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
+    return render(request, "reviews.html",
+                  {'reviews': reviews, "testvalue": 99})
 
 
 def review_detail(request, pk):
@@ -36,7 +37,7 @@ def create_review(request, pk):
     or edit a review depending if the Review ID
     is null or not
     """
-    product=Product.objects.get(pk=pk)
+    product = Product.objects.get(pk=pk)
     purchased_products = get_user_purchases(request.user)
     if request.user.is_authenticated and product.name in purchased_products:
         review = Review(author=request.user, product=product)
@@ -86,7 +87,7 @@ def delete_review(request, pk):
     """
     review = get_object_or_404(Review, pk=pk)
     if request.user.is_authenticated and review.author.id == request.user.id:
-        if request.method=="GET":
+        if request.method == "GET":
             review.delete()
             messages.success(request, "Review has been deleted")
             return redirect(reverse('get_reviews'))

@@ -1,5 +1,9 @@
 @media screen and (max-width: 510px) and (max-height: 823px) and (orientation: portrait) {
 
+    // fontsize definitions
+    $delPopupFontSize: 4vw;
+
+
     // max-width: 414px!!
     body {
         font-family: Arial;
@@ -13,6 +17,8 @@
         border-top: 1px solid #ededed;
         color: #A9A9A9;
     }
+
+
 
     .icon-bar {
         background-color: #fff;
@@ -90,12 +96,41 @@
         color: rgba(255, 0, 0, 0.5);
     }
 
-    #freeShippingPopup {
+    #confirmDeletePopup {
+        background-color: beige;
+        border-radius: 5px;
+        border: 1px solid grey;
+        width: 50vw;
+        height: 25vw;
         position: absolute;
         opacity: 0.0;
         z-index: -1;
+        top: 30%;
+        left: 25%;
         transform: translateZ(-10px);
         transition: opacity .5s ease-in-out;
+    }
+
+    #deletePopupMessage {
+        width: 80%;
+
+        font: {
+            family: $dosisFont;
+            size: $delPopupFontSize;
+        }
+    }
+
+    #deleteConfirmBtn {
+        background-color: lightcoral;
+        color: black;
+        margin-right: 2px;
+    }
+
+    #deleteCancelBtn {
+        background-color: lightslategray;
+        margin-left: 2px;
+        font-family: $dosisFont;
+
     }
 
     #brandicon {
@@ -112,7 +147,9 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    .orderline_header, .orderline_value {
+
+    .orderline_header,
+    .orderline_value {
         width: 33%;
         display: flex;
         justify-content: center;

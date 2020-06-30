@@ -5,7 +5,6 @@ from .models import Wishlist
 from .contexts import sync_wishlists, make_wishlist_string
 
 
-# Create your views here.
 def view_wishlist(request):
     """A View that renders the wishlist contents page"""
     return render(request, "wishlist.html")
@@ -26,7 +25,8 @@ def add_to_wishlist(request, id):
             user_wishlist = Wishlist.objects.get(user=request.user.id)
         except:
             name = str(request.user)+"'s wishlist"
-            user_wishlist = Wishlist(user=request.user, name=name, product_list="")
+            user_wishlist = Wishlist(user=request.user, name=name,
+                                     product_list="")
         user_wishlist.product_list = make_wishlist_string(wishlist)
         user_wishlist.save()
 
@@ -40,17 +40,19 @@ def remove_from_wishlist(request, id):
     if int(id) in wishlist:
         wishlist.remove(int(id))
         request.session['wishlist'] = wishlist
-        messages.success(request, "Product {0} has been removed from wishlist".format(product))
+        messages.success(request,
+                         "Product {0} has been removed from wishlist"
+                         .format(product))
     if request.user.is_authenticated:
         try:
             user_wishlist = Wishlist.objects.get(user=request.user.id)
         except:
             name = str(request.user)+"'s wishlist"
-            user_wishlist = Wishlist(user=request.user, name=name, product_list="")
+            user_wishlist = Wishlist(user=request.user, name=name,
+                                     product_list="")
         user_wishlist.product_list = make_wishlist_string(wishlist)
         user_wishlist.save()
-    if request.method=='GET':
+    if request.method == 'GET':
         return redirect(reverse('view_wishlist'))
-    elif request.method=='POST':
+    elif request.method == 'POST':
         return redirect(reverse('index'))
-

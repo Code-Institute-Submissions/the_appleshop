@@ -9,10 +9,14 @@ The Django admin panel can be accessed with following credentials.
 * login: admin
 * password: Test12345
 
+
 [![Build Status](https://travis-ci.org/poldi2018/the_appleshop.svg?branch=master)](https://travis-ci.org/poldi2018/the_appleshop)
 
 
+
 # Applications screen
+
+
 
 # Table of Contents
 
@@ -53,8 +57,8 @@ The Django admin panel can be accessed with following credentials.
 
 # User stories
 
-* As a user I would like to have an overview of products this shop has to offer.
-*  As a user, I want to be able to register an account and to logon on from desktop or mobile device, so I can store my favourites list of products and shopping cart for later review.
+* As a user I would like to have an overview of the variety of apples this shop has to offer.
+*  As a user, I want to be able to register an account and to logon on from desktop or mobile device, so I can store my favourites list of apples and shopping cart for later review.
 *  As a user, I expect that User preferences should list my user details and order history, User management
 *  As a user, I would like to have the possibility to review products I have purchased.
 *  As a user, I want to search for products based on entered search term.
@@ -64,12 +68,12 @@ The Django admin panel can be accessed with following credentials.
 
 # Shop features
 
-* user management
-* products search
-* shopping cart functionality, registered users can save cart to database.
-* checkout to finalise orders by paying with creditcard
-* review function for purchased items
-* maintain a wish list for registered users
+* A user management has been implemented
+* Products and reviews can be found by procuct name
+* Shopping cart functionality, registered users can save cart to database.
+* Checkout to finalise orders by paying with creditcard
+* Review function for purchased items only
+* Maintain a wish list for registered users
 * User created cart and wishlist saved in database are merged with a possibly locally created list before being logged in. For the shopping cart, if a product is in server cart and local cart, the higher value is set on merged cart.
 * free shipping above 50 EUR
 
@@ -136,7 +140,7 @@ I have added in total 4 models and one form as listed below.
 
 * The wireframes can be accessed in this folder:
 
-https://github.com/poldi2018/the_appleshop/tree/master/static/data/mockups
+    https://github.com/poldi2018/the_appleshop/tree/master/static/data/mockups
 
 
 
@@ -144,7 +148,7 @@ https://github.com/poldi2018/the_appleshop/tree/master/static/data/mockups
 
 * Create a project in your IDE and clone it into that workplace folder by executing the bash command
 
-git clone https://github.com/poldi2018/the_appleshop.git
+    git clone https://github.com/poldi2018/the_appleshop.git
 
 * In working directory of that project please create a file (e.g. env.py) to host the env variables.
 * The optional keys TESTING is only needed for testing to force Django to use sqlite. USELOCALSTATIC is used to work with local static files instead of AWS.
@@ -179,53 +183,53 @@ To run this project locally, the following steps need to be done.
 
 * For the installation of resources from requirements.txt it is recommended to install a virtual environment first. I used 'virtualenvwrapper' which can be installed by using
 
-sudo pip install virtualenvwrapper
+    sudo pip install virtualenvwrapper
 
 * After installation, please create an environment with e.g. name of 'shop_env'. Also the python version needs to be set by. The whole command should look like this:
 
 
-mkvirtualenv -p python3.8 shop_env
+    mkvirtualenv -p python3.8 shop_env
 
 
 * Installation of resources from requirements.txt is achieved by using
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 * Loading the model definitions into the database is accomplished by using the following two commands
 
-python3 manage.py makemigrations
+    python3 manage.py makemigrations
 
 * and
 
-python3 manage.py migrate
+    python3 manage.py migrate
 
 
 * As the last step a superuser needs to be created in database:
 
-python3 manage.py createsuperuser
+    python3 manage.py createsuperuser
 
 * In case of switching from Sqlite to Postgres database the commands
 
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser
+    python3 manage.py makemigrations <br>
+    python3 manage.py migrate <br>
+    python3 manage.py createsuperuser <br>
 
 * needs to be executed again to feed the new database with model and user information.
 
 # S3 bucket creation
 
-In S3 section:
+## S3 section:
 
 * create an S3 bucket
 The following Tabs need to checked for adaptation of settings
 
-* Tab name and region:
-- bucket name: Please provide a name for the bucket
-- region: FRA
+### Tab name and region:
+* bucket name: Please provide a name for the bucket
+* region: FRA
 
-* Tab set permissions:
-- unblock / uncheck all
-- save bucket
+ ### Tab set permissions:
+* unblock / uncheck all
+* save bucket
 
 
 * click on bucket name for extended setup
@@ -235,11 +239,11 @@ The following Tabs need to checked for adaptation of settings
 * Tab bucket policy:
 
 * With the help of the policy generator, generate :
-- Type of policy: S3 bucket policy
-- Principal: *
-- Actions: GetObject
-- ARN: arn:aws:s3:::the-appleshop/*
-- generate bucket policy, the outcome should look like this:
+* Type of policy: S3 bucket policy
+* Principal: *
+* Actions: GetObject
+* ARN: arn:aws:s3:::the-appleshop/*
+* generate bucket policy, the outcome should look like this:
 
 {
   "Id": "Policy1593110443922",
@@ -277,9 +281,9 @@ The following Tabs need to checked for adaptation of settings
 ```
 
 
-* In IAM section:
+## In IAM section:
 
-- POLICIES
+### POLICIES
 * create policy
 * import managed policy
 * search for AmazonS3FullAccess
@@ -288,14 +292,14 @@ The following Tabs need to checked for adaptation of settings
 * provide a name
 
 
-- GROUPS
+### GROUPS
 * create group
 * provide name
 * attach policy just created
 * Save group
 
 
-- USERS
+### USERS
 * Choose username
 * Programmatic access as access type
 * check and add user to just created group
@@ -304,13 +308,13 @@ The following Tabs need to checked for adaptation of settings
 * download csv file with credentials. Use the two keys as values in Heroku and env.py file
 
 
-- CONFIG settings.py:
+### CONFIG settings.py:
 
-AWS_STORAGE_BUCKET_NAME = 'YOURBUCKETNAME'
-AWS_S3_REGION_NAME = 'eu-west-1'
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_STORAGE_BUCKET_NAME = 'YOURBUCKETNAME' <br>
+AWS_S3_REGION_NAME = 'eu-west-1' <br>
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID") <br>
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY") <br>
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME <br>
 
 
 When switching from local static files folder to AWS bucket,
@@ -332,17 +336,17 @@ python3 manage.py runserver
 
 * Create a repository on Github
 
-* Deploying to the github branch is done by adding all files to stage by
+* Deploying to the github branch is done by adding all files to stage by using
 
-git add .
+    git add .
 
 * providing a commit message
 
-git commit -m 'my commit'
+    git commit -m 'my commit'
 
 * and push content to server
 
-git push -u origin master
+    git push -u origin master
 
 
 * In order to deploy this project to the web, please create an account at https://heroku.com/ and create an app with a unique name, region Europe. Write down the provided url for later call to run the project.
@@ -351,14 +355,14 @@ git push -u origin master
 
 On settings tab, click on 'Reveal Config Vars' and add the following variables.
 
-SECRET_KEY  A key of your choice
-STRIPE_PUBLISHABLE  Publish key provided by Stripe.com
-STRIPE_SECRET Your secret key provided by Stripe.com
-IP = 0.0.0.0
-PORT = 5000
-AWS_ACCESS_KEY_ID  Provided after S3 bucket creation
-AWS_SECRET_ACCESS_KEY Provided after S3 bucket creation
-DATABASE_URL (already present after Dyno installation)
+SECRET_KEY  A key of your choice <br>
+STRIPE_PUBLISHABLE  Publish key provided by Stripe.com <br>
+STRIPE_SECRET Your secret key provided by Stripe.com <br>
+IP = 0.0.0.0 <br>
+PORT = 5000 <br>
+AWS_ACCESS_KEY_ID  Provided after S3 bucket creation <br>
+AWS_SECRET_ACCESS_KEY Provided after S3 bucket creation <br>
+DATABASE_URL (already present after Dyno installation) <br>
 
 * In case the required Profile is not yet created, it is necessary to have this in place before deploying to Heroku.
 
@@ -387,6 +391,7 @@ https://YOUR_HEROKU_APP_NAME.herokuapp.com
 * A filter settings dropdown to filter search results
 * Email functionality for password reset and customer queries.
 * For legal conformity, a GDPR statement for real shop environment would be mandatory.
+* A stock management to check desired amount on cart against stock.
 
 
 
@@ -421,7 +426,7 @@ https://en.wikipedia.org/wiki/List_of_apple_cultivars
 
 * Compliance reports can be found in reports folder
 
-(https://github.com/poldi2018/the_appleshop/tree/master/static/data/reports)
+https://github.com/poldi2018/the_appleshop/tree/master/static/data/reports
 
 
 
@@ -434,10 +439,10 @@ https://en.wikipedia.org/wiki/List_of_apple_cultivars
 
 ## A detailed coverage report is available here:
 
-(https://github.com/poldi2018/the_appleshop/tree/master/htmlcov)
+https://github.com/poldi2018/the_appleshop/tree/master/htmlcov
 
 
-* Testing with Travis CI has passed.
+* Testing with Travis CI has passed all tests.
 
 ![Travis CI confirmation](static/data/mockups/screens/travis-ms5.jpg)
 

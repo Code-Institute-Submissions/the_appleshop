@@ -16,8 +16,10 @@
         <li role="presentation"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">Orders</a></li>
     </ul>
 
-    <!-- Tab panes -->
+    <!-- Tab panes for address details and orders -->
     <div class="tab-content">
+            <!-- Tab panes for address details-->
+
         <div role="tabpanel" class="tab-pane active" id="address">
             {% if user_addressform.full_name.value == "" %}
             <p>No record found, please enter your shipping address.</p>
@@ -31,6 +33,7 @@
             </form>
         </div>
 
+        <!-- Tab panes for order details-->
         <div role="tabpanel" class="tab-pane" id="orders">
             <div class="order_container">
                 <div class="orderline_header">Order number</div>
