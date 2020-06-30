@@ -30,7 +30,7 @@ def add_to_wishlist(request, id):
         user_wishlist.product_list = make_wishlist_string(wishlist)
         user_wishlist.save()
 
-    return redirect(reverse('index'))
+    return redirect(reverse('products'))
 
 
 def remove_from_wishlist(request, id):
@@ -55,4 +55,4 @@ def remove_from_wishlist(request, id):
     if request.method == 'GET':
         return redirect(reverse('view_wishlist'))
     elif request.method == 'POST':
-        return redirect(reverse('index'))
+        return redirect(reverse('products'))

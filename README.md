@@ -14,10 +14,6 @@ The Django admin panel can be accessed with following credentials.
 
 
 
-# Applications screen
-
-
-
 # Table of Contents
 
 
@@ -445,6 +441,8 @@ https://github.com/poldi2018/the_appleshop/tree/master/htmlcov
 * Testing with Travis CI has passed all tests.
 
 ![Travis CI confirmation](static/data/mockups/screens/travis-ms5.jpg)
+
+* Code is PEP8 conform, except a few lines, which were after changing not recognized by Django anymore.
 
 
 # Manual Testing

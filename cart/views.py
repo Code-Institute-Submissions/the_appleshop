@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Cart
+from django.contrib import messages
 
 
 def view_cart(request):
@@ -9,6 +10,9 @@ def view_cart(request):
 
 def add_to_cart(request, id):
     """Add a quantity of the specified product to the cart"""
+    if not request.POST.get('quantity'):
+        messages.success(request, "Please enter a value greater than 0")
+        return redirect(reverse('products'))
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
     if id in cart:

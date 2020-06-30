@@ -4,21 +4,44 @@
     $delPopupFontSize: 4vw;
 
 
+
     // max-width: 414px!!
     body {
         font-family: Arial;
         padding-top: 100px;
     }
 
-    footer {
-        margin-top: 40px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        border-top: 1px solid #ededed;
-        color: #A9A9A9;
+    // footer {
+    //     margin-top: 40px;
+    //     padding-top: 20px;
+    //     padding-bottom: 20px;
+    //     border-top: 1px solid #ededed;
+    //     color: #A9A9A9;
+    // }
+
+    .container>.navbar-header {
+        margin: {
+            left: 0;
+            right: 0;
+        }
+
     }
 
+    .container {
+        padding: {
+            left: 0;
+            right: 0;
 
+        }
+    }
+
+    .desktop-navbar {
+        display: none;
+    }
+
+    .navbar-nav {
+        margin: 7.5px 0;
+    }
 
     .icon-bar {
         background-color: #fff;
@@ -41,6 +64,20 @@
         background-color: #c67605;
     }
 
+
+    // product card
+
+    .productWrapper {
+        padding-bottom: 20vw;
+        background-color: #9e988fcb;
+
+    }
+
+    .searchFieldWrapper {
+        width: 100%;
+        padding-bottom: 10vw;
+    }
+
     .product {
         background-size: contain;
         background-position: center center;
@@ -61,14 +98,42 @@
     }
 
     .panel-default {
-        border-color: transparent;
-        padding: 0 10px;
+        padding: 0 0;
     }
 
     .panel-body {
         height: 100%;
         border: 1px solid #ddd;
+        background-color: cornsilk;
     }
+
+    .wishform {
+        width: 8vw;
+        position: absolute;
+        left: 85%;
+
+    }
+
+    .addWishBtn {
+        border: none;
+        background-color: transparent;
+
+    }
+
+    .stariconNotAdded,
+    .stariconAdded {
+        font-size: 5.5vw;
+
+    }
+
+    .stariconNotAdded {
+        color: rgb(151, 22, 22);
+    }
+
+    .stariconAdded {
+        color: green;
+    }
+
 
     .product-description {
         min-height: 40px;
@@ -77,6 +142,8 @@
     .productcard {
         width: 95vw;
     }
+
+    // bottom linkbar
 
     #bottombar {
         display: flex;
@@ -96,6 +163,77 @@
         color: rgba(255, 0, 0, 0.5);
     }
 
+
+    #brandicon {
+        color: rgb(182, 29, 24);
+    }
+
+    .products-icon {
+        margin-bottom: 5px;
+    }
+
+    // profile page
+
+    .profileWrapper {
+        padding-bottom: 20vw;
+    }
+
+    .form-control, .profile-tabs,
+    .orderline_header, .orderline_value,
+    .updateAddressBtn {
+        font-family: $dosisFont;
+        font-size: 3.5vw;
+    }
+
+
+    .tab-content {
+        width: 100%;
+    }
+
+    .tab-address {
+        width: 80vw;
+    }
+
+    .tab-orders {
+        width: 95vw;
+    }
+
+    .order_container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .orderline_header,
+    .orderline_value {
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #profile-shipping-label {
+        padding: {
+            top: 8vw;
+            bottom: 8vw;
+        }
+        font-family: $dosisFont;
+        font-size: 4vw;
+    }
+
+    .updateAddressBtn {
+        background-color: lightblue;
+    }
+
+    // cart styles
+
+    .addcard-icon {
+        font-size: 3vw;
+    }
+
+    // delete popup
+
     #confirmDeletePopup {
         background-color: beige;
         border-radius: 5px;
@@ -106,7 +244,7 @@
         opacity: 0.0;
         z-index: -1;
         top: 30%;
-        left: 25%;
+        left: 18%;
         transform: translateZ(-10px);
         transition: opacity .5s ease-in-out;
     }
@@ -133,32 +271,6 @@
 
     }
 
-    #brandicon {
-        color: rgb(182, 29, 24);
-    }
-
-    .products-icon {
-        margin-bottom: 5px;
-    }
-
-    .order_container {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .orderline_header,
-    .orderline_value {
-        width: 33%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .desktop-navbar {
-        display: none;
-    }
 
 
 }
