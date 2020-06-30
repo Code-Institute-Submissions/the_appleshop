@@ -8,18 +8,31 @@
 {% endblock head_js %}
 
 {% block content %}
-<div class="row row-flex">
-    {% for item in cart_items %}
+<div class="wishlistWrapper ha">
+    <div class="row row-flex">
+        {% if cart_items %}
+        {% for item in cart_items %}
+        <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
+            <div class="panel-body">
 
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-display">
+                <img src="{{ MEDIA_URL }}{{item.product.image}}" alt="image of {{item.product.name}}"
+                    style="width:200px;height:150px;">
 
-        <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
+                <div class="product-quickstats">
+                    <div class="quickstats-key vh"><i class="fa fa-eye"></i></div>
+                    <div class="quickstats-value">{{ item.product.view_count }}</div>
+                    <div class="quickstats-key vh"><i class="fa fa-comment"></i></div>
+                    <div class="quickstats-value">{{ item.product.review_count }}</div>
+                    <div class="quickstats-key vh">Sold:</div>
+                    <div class="quickstats-value">{{ item.product.ordered_pcs }}</div>
+                </div>
 
-        <div class="caption">
-            <h3>{{ item.product.name }}</h3>
-            <p class="product-description">{{ item.product.description }}</p>
-            <p>{{ item.product.price }}</p>
-            <p>
+                <h3><a class="product-headline"
+                        href="{% url 'product_detail' item.product.id %}"><b>{{item.product.name}}</b></a>
+                </h3>
+
+                <p class="product-description">{{ item.product.description|truncatewords:12 }}</p>
+                <p><b>Our price: {{ item.product.price }} EUR</b></p>
                 <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
                     {% csrf_token %}
                     <div class="form-group">
@@ -33,25 +46,31 @@
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"
                             aria-hidden="true"></span>Amend</button>
                 </form>
-            </p>
+
+            </div>
         </div>
+        {% endfor %}
+
+        <div class="checkout-summary-wrapper ha">
+
+            <div class="checkout-summary">
+                {% if shippingfee == "FREE" %}
+                <p>FREE SHIPPING!</p>
+                {% else %}
+                <p>{{shippingfee}} EUR Shipping</p>
+                {% endif %}
+                <p>Total</p>
+                <p id="totalamount"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+                <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span
+                        class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Checkout</a>
+                {% else %}
+                <div class="empty-cart-Wrapper ha">
+                    <p class="no-cart-items">No products in your shopping cart</p>
+                    <a href="{% url 'products' %}"><i class="fa fa-home"></i> Products</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-    {% endfor %}
-</div>
-<div class="row">
-    {% if cart_items %}
-    {% if shippingfee == "FREE" %}
-    <p>FREE SHIPPING!</p>
-    {% else %}
-    <p>{{shippingfee}} EUR Shipping</p>
-    {% endif %}
-    <p>Total</p>
-    <p id="totalamount"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-    <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign"
-            aria-hidden="true"></span>Checkout</a>
-    {% else %}
-    <p>No products in your shopping cart</p>
-    <a href="{% url 'products' %}"><i class="fa fa-home"></i> Products</a>
-    {% endif %}
 </div>
 {% endblock %}

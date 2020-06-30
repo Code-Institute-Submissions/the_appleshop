@@ -185,11 +185,7 @@
 
     .wishlist-remove-Btn i {
         font-size: 5.5vw;
-
     }
-
-
-
 
     .stariconNotAdded,
     .stariconAdded {
@@ -204,7 +200,6 @@
         color: green;
     }
 
-
     .product-description {
         min-height: 40px;
     }
@@ -217,6 +212,8 @@
         font-family: $dosisFont;
         font-size: 5.5vw;
     }
+
+
 
     // bottom linkbar
 
@@ -301,6 +298,20 @@
 
     .addcard-icon {
         font-size: 3vw;
+    }
+
+    .checkout-summary-wrapper {
+        width: 100%;
+    }
+
+    .empty-cart-Wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .no-cart-items {
+        width: 80%
     }
 
     // delete popup

@@ -270,6 +270,22 @@
   .addcard-icon {
     font-size: 3vw;
   }
+  .checkout-summary-wrapper {
+    width: 100%;
+  }
+  .empty-cart-Wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .no-cart-items {
+    width: 80%;
+  }
   #confirmDeletePopup {
     background-color: beige;
     border-radius: 5px;
