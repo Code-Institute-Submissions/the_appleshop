@@ -28,7 +28,7 @@
                     {% csrf_token %}
                     <span class="input-group-btn">
                         <input type="text" name="jumper" value="" hidden>
-                        <button class="addWishBtn" type="submit"><i class="fa fa-star stariconAdded"></i></button>
+                        <button class="removeWishBtn" type="submit"><i class="fa fa-star stariconAdded"></i></button>
                     </span>
                 </form>
                 {% else %}
@@ -43,21 +43,20 @@
                 <img src="{{ MEDIA_URL }}{{product.image}}" alt="image of {{product.name}}"
                     style="width:200px;height:150px;">
 
-<div class="product-quickstats">
-    <div class="quickstats-key vh"><i class="fa fa-eye"></i></div>
-    <div class="quickstats-value">{{ product.view_count }}</div>
-    <div class="quickstats-key vh"><i class="fa fa-comment"></i></div>
-    <div class="quickstats-value">{{ product.review_count }}</div>
-    <div class="quickstats-key vh">Sold:</div>
-    <div class="quickstats-value">{{ product.ordered_pcs }}</div>
-</div>
-                <!--
-            <div class="product" style="background-image: url('{{ MEDIA_URL }}{{product.image}}')"></div>-->
-                <h3><a class="product-headline" href="{% url 'product_detail' product.id %}"><b>{{product.name}}<b></a>
+                <div class="product-quickstats">
+                    <div class="quickstats-key vh"><i class="fa fa-eye"></i></div>
+                    <div class="quickstats-value">{{ product.view_count }}</div>
+                    <div class="quickstats-key vh"><i class="fa fa-comment"></i></div>
+                    <div class="quickstats-value">{{ product.review_count }}</div>
+                    <div class="quickstats-key vh">Sold:</div>
+                    <div class="quickstats-value">{{ product.ordered_pcs }}</div>
+                </div>
+
+                <h3><a class="product-headline" href="{% url 'product_detail' product.id %}"><b>{{product.name}}</b></a>
                 </h3>
 
                 <p class="product-description">{{ product.description|truncatewords:12 }}</p>
-                <p><b>Our price:  {{ product.price }} EUR<b></p>
+                <p><b>Our price: {{ product.price }} EUR</b></p>
                 <form id="addcart{{product.id}}" method="POST" action="{% url 'add_to_cart' product.id %}">
                     {% csrf_token %}
                     <div class="input-group">

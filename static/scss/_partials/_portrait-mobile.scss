@@ -139,14 +139,20 @@
     }
 
     .quickstats-key{
-        width: 26%;
-
-
+        width: 30%;
     }
 
     .quickstats-value {
         width: 70%;
+    }
 
+    .product-stats {
+        width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        //position: absolute;
+        top: 15vw;
+        left: 50vw;
     }
 
     .wishform {
@@ -155,16 +161,39 @@
         left: 88.7%;
     }
 
-    .addWishBtn {
+    .addWishBtn, .removeWishBtn {
         border: none;
         background-color: transparent;
+    }
+
+    // wishlist
+
+    .wishlistWrapper {
+        padding-bottom: 25vw;
+        background-color: #9e988fcb;
+        min-height: 82vh;
 
     }
+
+
+    .wishlist-remove-Btn {
+        width: 8vw;
+        position: absolute;
+        left: 88.7%;
+        color: rgb(189, 0, 0);
+    }
+
+    .wishlist-remove-Btn i {
+        font-size: 5.5vw;
+
+    }
+
+
+
 
     .stariconNotAdded,
     .stariconAdded {
         font-size: 5.5vw;
-
     }
 
     .stariconNotAdded {
@@ -209,7 +238,6 @@
         color: rgba(255, 0, 0, 0.5);
     }
 
-
     .products-icon {
         margin-bottom: 5px;
     }
@@ -225,6 +253,7 @@
     .updateAddressBtn {
         font-family: $dosisFont;
         font-size: 3.5vw;
+        font-weight: 900;
     }
 
 

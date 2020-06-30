@@ -130,19 +130,43 @@
     left: 50vw;
   }
   .quickstats-key {
-    width: 26%;
+    width: 30%;
   }
   .quickstats-value {
     width: 70%;
+  }
+  .product-stats {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    top: 15vw;
+    left: 50vw;
   }
   .wishform {
     width: 8vw;
     position: absolute;
     left: 88.7%;
   }
-  .addWishBtn {
+  .addWishBtn, .removeWishBtn {
     border: none;
     background-color: transparent;
+  }
+  .wishlistWrapper {
+    padding-bottom: 25vw;
+    background-color: #9e988fcb;
+    min-height: 82vh;
+  }
+  .wishlist-remove-Btn {
+    width: 8vw;
+    position: absolute;
+    left: 88.7%;
+    color: #bd0000;
+  }
+  .wishlist-remove-Btn i {
+    font-size: 5.5vw;
   }
   .stariconNotAdded,
   .stariconAdded {
@@ -199,6 +223,7 @@
   .updateAddressBtn {
     font-family: "Dosis", sans-serif;
     font-size: 3.5vw;
+    font-weight: 900;
   }
   .tab-content {
     width: 100%;

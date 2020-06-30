@@ -62,7 +62,7 @@
                             <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i>
                                 {% endif %}
                                 {%if wishlist_count > 0 %}
-                                <label class="badge badge-warning">{{ wishlist_count }}</label>
+                                <label class="badge badge-warning"><b>{{ wishlist_count }}</b></label>
                                 {% endif %}
                             </a>
                     </li>
@@ -98,7 +98,7 @@
                             <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i>
                                 {% endif %}
                                 {%if product_count > 0 %}
-                                <label class="badge badge-warning">{{ product_count }}</label>
+                                <label class="badge badge-warning"><b>{{ product_count }}</b></label>
                                 {% endif %}
                             </a>
                     </li>
@@ -132,7 +132,7 @@
                             <a href="{% url 'view_wishlist' %}"><i class="fa fa-star"></i> Wishlist
                                 {% endif %}
                                 {%if wishlist_count > 0 %}
-                                <label class="badge badge-warning">{{ wishlist_count }}</label>
+                                <label class="badge badge-warning"><b>{{ wishlist_count }}</b></label>
                                 {% endif %}
                             </a>
                     </li>
@@ -168,7 +168,7 @@
                             <a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart
                                 {% endif %}
                                 {%if product_count > 0 %}
-                                <label class="badge badge-warning">{{ product_count }}</label>
+                                <label class="badge badge-warning"><b>{{ product_count }}</b></label>
                                 {% endif %}
                             </a>
                     </li>
